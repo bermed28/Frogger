@@ -15,6 +15,10 @@ public class BaseArea {
         this.handler = handler;
         this.yPosition = yPosition;
     }
+
+    public void tick(){
+
+    }
     
     public void render(Graphics g) {
     	

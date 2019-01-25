@@ -18,12 +18,22 @@ public class Images {
     public static BufferedImage[] BTitle;
     public static BufferedImage[] Options;
     public static ImageIcon icon;
-    
+
+    public static SpriteSheet playerSheet;
+    public static BufferedImage[] Player;
+    public static SpriteSheet WaterSheet;
+    public static BufferedImage[] Water;
+
+
     public static BufferedImage player;
     
     public static BufferedImage grassArea;
     public static BufferedImage waterArea;
     public static BufferedImage emptyArea;
+    public static BufferedImage lilly;
+    public static BufferedImage log;
+    public static BufferedImage grass;
+
 
     public Images() {
 
@@ -31,8 +41,12 @@ public class Images {
         Resume = new BufferedImage[2];
         BTitle = new BufferedImage[2];
         Options = new BufferedImage[2];
+        Player = new BufferedImage[8];
+        Water = new BufferedImage[3];
 
         try {
+            playerSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/gameSprites.png")));
+            WaterSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/water.png")));
 
             title = ImageIO.read(getClass().getResourceAsStream("/Sheets/Title.png"));
             Pause = ImageIO.read(getClass().getResourceAsStream("/Buttons/Pause.png"));
@@ -45,14 +59,31 @@ public class Images {
             butstart[0]= ImageIO.read(getClass().getResourceAsStream("/Buttons/NormBut.png"));//normbut
             butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/HoverBut.png"));//hoverbut
             butstart[2]= ImageIO.read(getClass().getResourceAsStream("/Buttons/ClickedBut.png"));//clickbut
+            Player[0]= playerSheet.crop(0,30,52,39);
+            Player[1]= playerSheet.crop(53,25,59,46);
+            Player[2]= playerSheet.crop(114,20,56,51);
+            Player[3]= playerSheet.crop(173,9,53,64);
+            Player[4]= playerSheet.crop(230,2,54,73);
+            Player[5]= playerSheet.crop(229,1,56,75);
+            Player[6]= playerSheet.crop(285,18,59,54);
+            Player[7]= playerSheet.crop(0,30,52,39);Player[0]= playerSheet.crop(0,30,52,39);
+
+            Water[0]= WaterSheet.crop(0,0,32,32);
+            Water[1]= WaterSheet.crop(32,0,32,32);
+            Water[2]= WaterSheet.crop(64,0,32,32);
+
+
+            lilly = playerSheet.crop(6,170,61,55);
+            log = playerSheet.crop(387,259,184,57);
 
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/icon.png")));
             
             player = ImageIO.read(getClass().getResourceAsStream("/Sheets/frogger.png"));
-            
+            grass = ImageIO.read(getClass().getResourceAsStream("/Sheets/grass.jpg"));
+
             grassArea = ImageIO.read(getClass().getResourceAsStream("/Sheets/grassArea.png"));
             waterArea = ImageIO.read(getClass().getResourceAsStream("/Sheets/waterArea.png"));
-            emptyArea = ImageIO.read(getClass().getResourceAsStream("/Sheets/emptyArea.png"));
+            emptyArea = ImageIO.read(getClass().getResourceAsStream("/Sheets/sand.jpg"));
 
             
         }catch (IOException e) {

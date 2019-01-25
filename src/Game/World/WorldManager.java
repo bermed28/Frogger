@@ -47,7 +47,7 @@ public class WorldManager {
 
         gridWidth = handler.getWidth()/64;
         gridHeight = handler.getHeight()/64;
-        movementSpeed = 1;
+        movementSpeed = 0;
         
         //Spawn Areas in Map (2 extra areas spawned off screen)
         for(int i=0; i<gridHeight+2; i++) {
@@ -66,6 +66,9 @@ public class WorldManager {
     }
 
     public void tick(){
+        for(BaseArea area : SpawnedAreas) {
+            area.tick();
+        }
     	for(int i=0; i<SpawnedAreas.size(); i++) {
     		SpawnedAreas.get(i).setYPosition(SpawnedAreas.get(i).getYPosition()+movementSpeed);
      		  	//Check if Area passed the screen
@@ -74,7 +77,7 @@ public class WorldManager {
      			   SpawnedAreas.set(i, randomArea(-2*64));
      		   }
     			if(SpawnedAreas.get(i).getYPosition() < player.getY() && player.getY()-SpawnedAreas.get(i).getYPosition()<30) {
-    				player.setY(SpawnedAreas.get(i).getYPosition());
+    				//player.setY(SpawnedAreas.get(i).getYPosition());
     			}
         }
         player.tick();

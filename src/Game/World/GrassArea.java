@@ -13,6 +13,9 @@ public class GrassArea extends BaseArea {
     
     @Override
     public void render(Graphics g) {
-    	g.drawImage(Images.grassArea, 0, yPosition, null);
+        for (int i = 0; i < 9; i++) {
+            g.drawImage(Images.grass, i*64, yPosition,64,64, null);
+
+        }
     }
 }
