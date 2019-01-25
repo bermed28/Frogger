@@ -9,11 +9,14 @@ import Main.Handler;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class WorldManager {
 
     ArrayList<BaseArea> AreasAvailables;//Lake, empty and grass area
     ArrayList<StaticBase> StaticEntitiesAvailables;//trees, lillies, logs
+    
+    ArrayList<BaseArea> SpawnedAreas;//Areas currently on world
 
     Handler handler;
 
@@ -21,7 +24,7 @@ public class WorldManager {
 
     ID[][] grid;
     int gridWidth,gridHeight;
-
+    
 
     public WorldManager(Handler handler) {
         this.handler = handler;
@@ -33,6 +36,7 @@ public class WorldManager {
         AreasAvailables.add(new WaterArea(handler));
         AreasAvailables.add(new EmptyArea(handler));
 
+        SpawnedAreas = new ArrayList<>();
 
         StaticEntitiesAvailables.add(new LillyPad(handler));
         StaticEntitiesAvailables.add(new Log(handler));
@@ -42,7 +46,13 @@ public class WorldManager {
 
         gridWidth = handler.getWidth()/64;
         gridHeight = handler.getHeight()/64;
-
+        
+        //Spawn Areas in Map (2 extra areas spawned off screen)
+        for(int i=0; i<gridHeight+2; i++) {
+        	SpawnedAreas.add(randomArea());
+        	SpawnedAreas.get(i).setYPosition(-2*64+i*64);
+        }
+        	
         player.setX((gridWidth/2)*64);
         player.setY((gridHeight-3)*64);
 
@@ -55,11 +65,39 @@ public class WorldManager {
     }
 
     public void tick(){
-
+    	for(int i=0; i<SpawnedAreas.size(); i++) {
+    		SpawnedAreas.get(i).setYPosition(SpawnedAreas.get(i).getYPosition()+1);
+     		  	//Check if Area passed the screen
+    			if(SpawnedAreas.get(i).getYPosition() > handler.getHeight()) {
+    				//Replace with a new random area and position it on top
+     			   SpawnedAreas.set(i, randomArea());
+     			   SpawnedAreas.get(i).setYPosition(-2*64);
+     		   }
+        }
         player.tick();
     }
 
     public void render(Graphics g){
-        player.render(g);
+       for(BaseArea area : SpawnedAreas) {
+    	   area.render(g);
+       }
+    	player.render(g);
     }
+    
+    //Returns a random area
+    public BaseArea randomArea() {
+    	Random rand = new Random();
+    	BaseArea randomArea = AreasAvailables.get(rand.nextInt(AreasAvailables.size()));
+    	if(randomArea instanceof GrassArea) {
+    		randomArea = new GrassArea(handler);
+    	}
+    	else if(randomArea instanceof WaterArea) {
+    		randomArea = new WaterArea(handler);
+    	}
+    	else {
+    		randomArea = new EmptyArea(handler);
+    	}
+    	return randomArea;
+    }
+    
 }
