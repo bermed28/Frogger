@@ -9,11 +9,14 @@ import Main.Handler;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class WorldManager {
 
     ArrayList<BaseArea> AreasAvailables;//Lake, empty and grass area
     ArrayList<StaticBase> StaticEntitiesAvailables;//trees, lillies, logs
+    
+    ArrayList<BaseArea> SpawnedAreas;//Areas currently on world
 
     Handler handler;
 
@@ -21,7 +24,8 @@ public class WorldManager {
 
     ID[][] grid;
     int gridWidth,gridHeight;
-
+    int movementSpeed;
+    
 
     public WorldManager(Handler handler) {
         this.handler = handler;
@@ -29,10 +33,11 @@ public class WorldManager {
         AreasAvailables = new ArrayList<>();
         StaticEntitiesAvailables = new ArrayList<>();
 
-        AreasAvailables.add(new GrassArea(handler));
-        AreasAvailables.add(new WaterArea(handler));
-        AreasAvailables.add(new EmptyArea(handler));
+        AreasAvailables.add(new GrassArea(handler, 0));
+        AreasAvailables.add(new WaterArea(handler, 0));
+        AreasAvailables.add(new EmptyArea(handler, 0));
 
+        SpawnedAreas = new ArrayList<>();
 
         StaticEntitiesAvailables.add(new LillyPad(handler));
         StaticEntitiesAvailables.add(new Log(handler));
@@ -42,7 +47,13 @@ public class WorldManager {
 
         gridWidth = handler.getWidth()/64;
         gridHeight = handler.getHeight()/64;
-
+        movementSpeed = 1;
+        
+        //Spawn Areas in Map (2 extra areas spawned off screen)
+        for(int i=0; i<gridHeight+2; i++) {
+        	SpawnedAreas.add(randomArea((-2+i)*64));
+        }
+        	
         player.setX((gridWidth/2)*64);
         player.setY((gridHeight-3)*64);
 
@@ -55,11 +66,43 @@ public class WorldManager {
     }
 
     public void tick(){
-
+    	for(int i=0; i<SpawnedAreas.size(); i++) {
+    		SpawnedAreas.get(i).setYPosition(SpawnedAreas.get(i).getYPosition()+movementSpeed);
+     		  	//Check if Area passed the screen
+    			if(SpawnedAreas.get(i).getYPosition() > handler.getHeight()) {
+    				//Replace with a new random area and position it on top
+     			   SpawnedAreas.set(i, randomArea(-2*64));
+     		   }
+    			if(SpawnedAreas.get(i).getYPosition() < player.getY() && player.getY()-SpawnedAreas.get(i).getYPosition()<30) {
+    				player.setY(SpawnedAreas.get(i).getYPosition());
+    			}
+        }
         player.tick();
+        //make player move the same as the areas
+        player.setY(player.getY()+movementSpeed);
     }
 
     public void render(Graphics g){
-        player.render(g);
+       for(BaseArea area : SpawnedAreas) {
+    	   area.render(g);
+       }
+    	player.render(g);
     }
+    
+    //Returns a random area
+    public BaseArea randomArea(int yPosition) {
+    	Random rand = new Random();
+    	BaseArea randomArea = AreasAvailables.get(rand.nextInt(AreasAvailables.size()));
+    	if(randomArea instanceof GrassArea) {
+    		randomArea = new GrassArea(handler, yPosition);
+    	}
+    	else if(randomArea instanceof WaterArea) {
+    		randomArea = new WaterArea(handler, yPosition);
+    	}
+    	else {
+    		randomArea = new EmptyArea(handler, yPosition);
+    	}
+    	return randomArea;
+    }
+    
 }

@@ -18,6 +18,12 @@ public class Images {
     public static BufferedImage[] BTitle;
     public static BufferedImage[] Options;
     public static ImageIcon icon;
+    
+    public static BufferedImage player;
+    
+    public static BufferedImage grassArea;
+    public static BufferedImage waterArea;
+    public static BufferedImage emptyArea;
 
     public Images() {
 
@@ -41,8 +47,14 @@ public class Images {
             butstart[2]= ImageIO.read(getClass().getResourceAsStream("/Buttons/ClickedBut.png"));//clickbut
 
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/icon.png")));
+            
+            player = ImageIO.read(getClass().getResourceAsStream("/Sheets/frogger.png"));
+            
+            grassArea = ImageIO.read(getClass().getResourceAsStream("/Sheets/grassArea.png"));
+            waterArea = ImageIO.read(getClass().getResourceAsStream("/Sheets/waterArea.png"));
+            emptyArea = ImageIO.read(getClass().getResourceAsStream("/Sheets/emptyArea.png"));
 
-
+            
         }catch (IOException e) {
         e.printStackTrace();
     }
