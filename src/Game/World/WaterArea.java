@@ -4,15 +4,16 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import Main.Handler;
+import Resources.Images;
 
 public class WaterArea extends BaseArea {
-    public WaterArea(Handler handler) {
-        super(handler);
+    public WaterArea(Handler handler, int yPosition) {
+        super(handler, yPosition);
     }
     
     @Override
     public void render(Graphics g) {
-    	g.setColor(Color.BLUE);
-    	g.fillRect(0, yPosition, handler.getWidth(), 64);
+    	g.drawImage(Images.waterArea, 0, yPosition, null);
+    	
     }
 }

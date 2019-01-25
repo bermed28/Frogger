@@ -24,6 +24,7 @@ public class WorldManager {
 
     ID[][] grid;
     int gridWidth,gridHeight;
+    int movementSpeed;
     
 
     public WorldManager(Handler handler) {
@@ -32,9 +33,9 @@ public class WorldManager {
         AreasAvailables = new ArrayList<>();
         StaticEntitiesAvailables = new ArrayList<>();
 
-        AreasAvailables.add(new GrassArea(handler));
-        AreasAvailables.add(new WaterArea(handler));
-        AreasAvailables.add(new EmptyArea(handler));
+        AreasAvailables.add(new GrassArea(handler, 0));
+        AreasAvailables.add(new WaterArea(handler, 0));
+        AreasAvailables.add(new EmptyArea(handler, 0));
 
         SpawnedAreas = new ArrayList<>();
 
@@ -46,11 +47,11 @@ public class WorldManager {
 
         gridWidth = handler.getWidth()/64;
         gridHeight = handler.getHeight()/64;
+        movementSpeed = 1;
         
         //Spawn Areas in Map (2 extra areas spawned off screen)
         for(int i=0; i<gridHeight+2; i++) {
-        	SpawnedAreas.add(randomArea());
-        	SpawnedAreas.get(i).setYPosition(-2*64+i*64);
+        	SpawnedAreas.add(randomArea((-2+i)*64));
         }
         	
         player.setX((gridWidth/2)*64);
@@ -66,15 +67,19 @@ public class WorldManager {
 
     public void tick(){
     	for(int i=0; i<SpawnedAreas.size(); i++) {
-    		SpawnedAreas.get(i).setYPosition(SpawnedAreas.get(i).getYPosition()+1);
+    		SpawnedAreas.get(i).setYPosition(SpawnedAreas.get(i).getYPosition()+movementSpeed);
      		  	//Check if Area passed the screen
     			if(SpawnedAreas.get(i).getYPosition() > handler.getHeight()) {
     				//Replace with a new random area and position it on top
-     			   SpawnedAreas.set(i, randomArea());
-     			   SpawnedAreas.get(i).setYPosition(-2*64);
+     			   SpawnedAreas.set(i, randomArea(-2*64));
      		   }
+    			if(SpawnedAreas.get(i).getYPosition() < player.getY() && player.getY()-SpawnedAreas.get(i).getYPosition()<30) {
+    				player.setY(SpawnedAreas.get(i).getYPosition());
+    			}
         }
         player.tick();
+        //make player move the same as the areas
+        player.setY(player.getY()+movementSpeed);
     }
 
     public void render(Graphics g){
@@ -85,17 +90,17 @@ public class WorldManager {
     }
     
     //Returns a random area
-    public BaseArea randomArea() {
+    public BaseArea randomArea(int yPosition) {
     	Random rand = new Random();
     	BaseArea randomArea = AreasAvailables.get(rand.nextInt(AreasAvailables.size()));
     	if(randomArea instanceof GrassArea) {
-    		randomArea = new GrassArea(handler);
+    		randomArea = new GrassArea(handler, yPosition);
     	}
     	else if(randomArea instanceof WaterArea) {
-    		randomArea = new WaterArea(handler);
+    		randomArea = new WaterArea(handler, yPosition);
     	}
     	else {
-    		randomArea = new EmptyArea(handler);
+    		randomArea = new EmptyArea(handler, yPosition);
     	}
     	return randomArea;
     }

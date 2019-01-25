@@ -2,6 +2,7 @@ package Game.Entities.Dynamic;
 
 import Game.Entities.EntityBase;
 import Main.Handler;
+import Resources.Images;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -31,7 +32,6 @@ public class Player extends EntityBase {
 
     public void render(Graphics g){
 
-        g.setColor(Color.green);
-        g.fillRect(getX(),getY(),getWidth(),getHeight());
+       g.drawImage(Images.player, getX(), getY(), getWidth(), getHeight(), null);
     }
 }

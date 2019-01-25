@@ -4,15 +4,15 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import Main.Handler;
+import Resources.Images;
 
 public class EmptyArea extends BaseArea {
-    public EmptyArea(Handler handler) {
-        super(handler);
+    public EmptyArea(Handler handler, int yPosition) {
+        super(handler, yPosition);
     }
     
     @Override
     public void render(Graphics g) {
-    	g.setColor(Color.GRAY);
-    	g.fillRect(0, yPosition, handler.getWidth(), 64);
+    	g.drawImage(Images.emptyArea, 0, yPosition, null);
     }
 }
