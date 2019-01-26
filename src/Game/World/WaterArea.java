@@ -23,7 +23,7 @@ public class WaterArea extends BaseArea {
     @Override
     public void render(Graphics g) {
         for (int i = 0; i < 9; i++) {
-            g.drawImage(anim.getCurrentFrame(), i*64, yPosition,64,64, null);
+            g.drawImage(anim.getCurrentFrame(), i*64, yPosition,64,66, null);
 
         }
 

@@ -14,7 +14,7 @@ public class EmptyArea extends BaseArea {
     @Override
     public void render(Graphics g) {
         for (int i = 0; i < 9; i++) {
-            g.drawImage(Images.emptyArea, i*64, yPosition,64,65, null);
+            g.drawImage(Images.emptyArea, i*64, yPosition,64,66, null);
 
         }    }
 }
