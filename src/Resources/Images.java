@@ -77,9 +77,9 @@ public class Images {
             lilly = playerSheet.crop(6,170,61,55);
             log = playerSheet.crop(387,259,184,57);
 
-            icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/icon.png")));
+            icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/froggy.png")));
             
-            player = ImageIO.read(getClass().getResourceAsStream("/Sheets/frogger.png"));
+            player = ImageIO.read(getClass().getResourceAsStream("/Sheets/froggy.png"));
             grass = ImageIO.read(getClass().getResourceAsStream("/Sheets/grass.jpg"));
 
             grassArea = ImageIO.read(getClass().getResourceAsStream("/Sheets/grassArea.png"));
