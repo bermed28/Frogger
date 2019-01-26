@@ -5,6 +5,8 @@ import Game.World.WorldManager;
 import Main.Handler;
 import java.awt.*;
 
+import com.sun.glass.events.KeyEvent;
+
 /**
  * Created by AlexVR on 7/1/2018.
  */
@@ -15,6 +17,7 @@ public class GameState extends State {
         super(handler);
         handler.setEntityManager(new EntityManager(handler));
         handler.setWorldManager(new WorldManager(handler));
+        
 
 
     }
@@ -24,6 +27,12 @@ public class GameState extends State {
     public void tick() {
 
         handler.getWorld().tick();
+        
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
+        	
+        	State.setState(handler.getGame().pauseState);
+        	
+        }
 
     }
 
