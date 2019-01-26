@@ -47,7 +47,7 @@ public class WorldManager {
 
         gridWidth = handler.getWidth()/64;
         gridHeight = handler.getHeight()/64;
-        movementSpeed = 0;
+        movementSpeed = 1;
         
         //Spawn Areas in Map (2 extra areas spawned off screen)
         for(int i=0; i<gridHeight+2; i++) {
@@ -76,8 +76,8 @@ public class WorldManager {
     				//Replace with a new random area and position it on top
      			   SpawnedAreas.set(i, randomArea(-2*64));
      		   }
-    			if(SpawnedAreas.get(i).getYPosition() < player.getY() && player.getY()-SpawnedAreas.get(i).getYPosition()<30) {
-    				//player.setY(SpawnedAreas.get(i).getYPosition());
+    			if(SpawnedAreas.get(i).getYPosition() < player.getY() && player.getY()-SpawnedAreas.get(i).getYPosition()<3) {
+    				player.setY(SpawnedAreas.get(i).getYPosition());
     			}
         }
         player.tick();
