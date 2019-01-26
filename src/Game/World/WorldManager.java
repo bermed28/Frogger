@@ -76,6 +76,7 @@ public class WorldManager {
     				//Replace with a new random area and position it on top
      			   SpawnedAreas.set(i, randomArea(-2*64));
      		   }
+    			//Make sure players position is synchronized with area's movement
     			if(SpawnedAreas.get(i).getYPosition() < player.getY() && player.getY()-SpawnedAreas.get(i).getYPosition()<3) {
     				player.setY(SpawnedAreas.get(i).getYPosition());
     			}
