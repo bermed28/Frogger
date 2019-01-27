@@ -1,8 +1,6 @@
 package Game.Entities.Static;
 
 import java.awt.Graphics;
-
-import Game.Entities.EntityBase;
 import Main.Handler;
 import Resources.Images;
 
@@ -17,6 +15,6 @@ public class LillyPad extends StaticBase {
     @Override
     public void render(Graphics g) {
     	
-    	g.drawImage(Images.lilly, this.getX(), this.getY(), 64, 64, null);
+    	g.drawImage(Images.lilly, this.getX(), this.getY()+5, 64, 55, null);
     }
 }
