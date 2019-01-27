@@ -2,7 +2,6 @@ package Game.Entities.Static;
 
 import java.awt.Graphics;
 
-import Game.Entities.EntityBase;
 import Main.Handler;
 import Resources.Images;
 

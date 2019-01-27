@@ -1,9 +1,7 @@
 package Game.World;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
-
 import Main.Handler;
 import Resources.Animation;
 import Resources.Images;

@@ -6,7 +6,6 @@ import Game.Entities.Static.Log;
 import Game.Entities.Static.StaticBase;
 import Game.Entities.Static.Tree;
 import Main.Handler;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
