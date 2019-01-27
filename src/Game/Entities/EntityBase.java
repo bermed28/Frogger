@@ -8,7 +8,7 @@ public class EntityBase {
 
 
     Handler handler;
-    int height=64,width=64,x,y;
+    private int height=64,width=64,x,y;
 
 
     public EntityBase( Handler handler) {

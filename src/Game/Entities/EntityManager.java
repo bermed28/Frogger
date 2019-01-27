@@ -9,7 +9,7 @@ public class EntityManager {
 
     Handler handler;
 
-    ArrayList<EntityBase> entityList;
+    private ArrayList<EntityBase> entityList;
 
     public EntityManager(Handler handler) {
         this.handler = handler;

@@ -1,15 +1,14 @@
 package Game.Entities.Static;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import Main.Handler;
 import Resources.Images;
 
 public class Log extends StaticBase {
-	
-		Rectangle log;
+
+    private Rectangle log;
 	
     public Log(Handler handler,int xPosition, int yPosition) {
         super(handler);

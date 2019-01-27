@@ -6,27 +6,25 @@ import Game.Entities.Static.Log;
 import Game.Entities.Static.StaticBase;
 import Game.Entities.Static.Tree;
 import Main.Handler;
-import Resources.Images;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class WorldManager {
 
-    ArrayList<BaseArea> AreasAvailables;//Lake, empty and grass area
-    ArrayList<StaticBase> StaticEntitiesAvailables;//trees, lillies, logs
-    
-    ArrayList<BaseArea> SpawnedAreas;		//Areas currently on world
-    ArrayList<StaticBase> SpawnedHazards;	//Hazards currently on world.
+	private ArrayList<BaseArea> AreasAvailables;//Lake, empty and grass area
+	private ArrayList<StaticBase> StaticEntitiesAvailables;//trees, lillies, logs
+
+	private ArrayList<BaseArea> SpawnedAreas;		//Areas currently on world
+	private ArrayList<StaticBase> SpawnedHazards;	//Hazards currently on world.
     
     Handler handler;
 
-    Player player;
+	private Player player;
 
-    ID[][] grid;
-    int gridWidth,gridHeight;
-    int movementSpeed;
+	private ID[][] grid;
+	private int gridWidth,gridHeight;
+	private int movementSpeed;
     
 
     public WorldManager(Handler handler) {
@@ -139,7 +137,7 @@ public class WorldManager {
     }
     
     //Returns a random area
-    public BaseArea randomArea(int yPosition) {
+	private BaseArea randomArea(int yPosition) {
     	Random rand = new Random();
     	BaseArea randomArea = AreasAvailables.get(rand.nextInt(AreasAvailables.size()));
     	if(randomArea instanceof GrassArea) {
@@ -162,7 +160,6 @@ public class WorldManager {
 	private void SpawnHazard(int yPosition) {
 		Random rand = new Random();
 		int randInt;
-		
 		// Chooses between Log or Lillypad
 		if (rand.nextBoolean()) {
 			randInt = 64 * rand.nextInt(4);
@@ -173,7 +170,5 @@ public class WorldManager {
 			SpawnedHazards.add(new LillyPad(handler, randInt, yPosition));
 		}
 	}
-    
-    
     
 }

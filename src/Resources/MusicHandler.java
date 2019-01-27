@@ -20,14 +20,12 @@ public class MusicHandler {
     private ArrayList<MediaPlayer> playerE = new ArrayList<>();
     private Media mediaE;
     private String pathE;
-
-    private Handler handler;
-
+    public Handler handler;
 
     public static final double MUTE = 0.0;
 
-    public MusicHandler(Handler handler){
-        this.handler = handler;
+    public MusicHandler(){
+
         final JFXPanel fxPanel = new JFXPanel();
 
     }
@@ -108,4 +106,11 @@ public class MusicHandler {
         player.setVolume(volume);
     }
 
+    public Handler getHandler() {
+        return handler;
+    }
+
+    public void setHandler(Handler handler) {
+        this.handler = handler;
+    }
 }

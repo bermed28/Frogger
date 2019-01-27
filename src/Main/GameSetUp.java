@@ -20,15 +20,10 @@ import java.awt.image.BufferedImage;
 public class GameSetUp implements Runnable {
     private DisplayScreen display;
     private int width, height;
-    public String title;
+    private String title;
 
     private boolean running = false;
     private Thread thread;
-
-    private BufferStrategy bs;
-    private Graphics g;
-
-
 
     //Input
     private KeyManager keyManager;
@@ -45,17 +40,16 @@ public class GameSetUp implements Runnable {
     //Res.music
     private MusicHandler musicHandler;
 
-
     private BufferedImage loading;
 
-    public GameSetUp(String title, int width, int height){
+    GameSetUp(String title, int width, int height){
 
         this.width = width;
         this.height = height;
         this.title = title;
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
-        musicHandler = new MusicHandler(handler);
+        musicHandler = new MusicHandler();
 
     }
 
@@ -69,8 +63,8 @@ public class GameSetUp implements Runnable {
 
         Images img = new Images();
 
-
         handler = new Handler(this);
+        musicHandler.setHandler(handler);
 
         gameState = new GameState(handler);
         menuState = new MenuState(handler);
@@ -145,12 +139,12 @@ public class GameSetUp implements Runnable {
     }
 
     private void render(){
-        bs = display.getCanvas().getBufferStrategy();
+        BufferStrategy bs = display.getCanvas().getBufferStrategy();
         if(bs == null){
             display.getCanvas().createBufferStrategy(3);
             return;
         }
-        g = bs.getDrawGraphics();
+        Graphics g = bs.getDrawGraphics();
         //Clear Screen
         g.clearRect(0, 0, width, height);
 
@@ -177,7 +171,7 @@ public class GameSetUp implements Runnable {
         }
     }
 
-    public KeyManager getKeyManager(){
+    KeyManager getKeyManager(){
         return keyManager;
     }
 
@@ -185,8 +179,7 @@ public class GameSetUp implements Runnable {
         return musicHandler;
     }
 
-
-    public MouseManager getMouseManager(){
+    MouseManager getMouseManager(){
         return mouseManager;
     }
 

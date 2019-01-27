@@ -11,7 +11,7 @@ public class BaseArea {
 
     boolean canStepOn = true;
 
-    public BaseArea(Handler handler, int yPosition) {
+    BaseArea(Handler handler, int yPosition) {
         this.handler = handler;
         this.yPosition = yPosition;
     }

@@ -9,9 +9,9 @@ import Main.Handler;
 
 public class StaticBase extends EntityBase {
 
-    BaseArea SpawnableArea;
+    private BaseArea SpawnableArea;
 
-    public StaticBase(Handler handler) {
+    StaticBase(Handler handler) {
         super(handler);
     }
 

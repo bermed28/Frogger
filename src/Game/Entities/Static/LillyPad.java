@@ -7,8 +7,8 @@ import Main.Handler;
 import Resources.Images;
 
 public class LillyPad extends StaticBase {
-	
-	Rectangle lillypad;
+
+    private Rectangle lillypad;
 	
     public LillyPad(Handler handler,int xPosition, int yPosition) {
         super(handler);

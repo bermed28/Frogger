@@ -17,28 +17,21 @@ public class GameState extends State {
         super(handler);
         handler.setEntityManager(new EntityManager(handler));
         handler.setWorldManager(new WorldManager(handler));
-        
-
 
     }
 
 
     @Override
     public void tick() {
-
         handler.getWorld().tick();
-        
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
-        	
         	State.setState(handler.getGame().pauseState);
-        	
         }
 
     }
 
     @Override
     public void render(Graphics g) {
-
         handler.getWorld().render(g);
 
     }
