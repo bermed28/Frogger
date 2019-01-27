@@ -37,12 +37,33 @@ public class Player extends EntityBase {
             index++;
             switch (facing){
                 case "UP":
+                	if(this.getX() % 64 >= 64 / 2 ) {
+                		
+                		this.setX(this.getX() + (64 - this.getX() % 64));
+                		
+                	}
+                	else {
+                		
+                		this.setX(this.getX() - this.getX() % 64);
+                		
+                	}              		
+                		
                     setY(getY()-(8));
                     break;
                 case "LEFT":
                     setX(getX()-(8));
                     break;
                 case "DOWN":
+                		if(this.getX() % 64 >= 64 / 2 ) {
+                		
+                		this.setX(this.getX() + (64 - this.getX() % 64));
+                		
+                	}
+                	else {
+                		
+                		this.setX(this.getX() - this.getX() % 64);
+                		
+                	}              
                     setY(getY()+(8));
                     break;
                 case "RIGHT":
@@ -61,6 +82,16 @@ public class Player extends EntityBase {
                 moving=true;
             }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && !facing.equals("UP")){
                 if(facing.equals("DOWN")) {
+                		if(this.getX() % 64 >= 64 / 2 ) {
+                		
+                		this.setX(this.getX() + (64 - this.getX() % 64));
+                		
+                	}
+                	else {
+                		
+                		this.setX(this.getX() - this.getX() % 64);
+                		
+                	}              
                     setY(getY() + 64);
                 }
                 if(facing.equals("LEFT")) {
@@ -81,6 +112,16 @@ public class Player extends EntityBase {
                     setX(getX()-64);
                 }
                 if(facing.equals("UP")) {
+                	if(this.getX() % 64 >= 64 / 2 ) {
+                		
+                		this.setX(this.getX() + (64 - this.getX() % 64));
+                		
+                	}
+                	else {
+                		
+                		this.setX(this.getX() - this.getX() % 64);
+                		
+                	}              
                     setY(getY()-64);
                 }
                 facing = "LEFT";
@@ -91,6 +132,16 @@ public class Player extends EntityBase {
 
             }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S) && !moving && !facing.equals("DOWN")){
                 if(facing.equals("UP")){
+                	if(this.getX() % 64 >= 64 / 2 ) {
+                		
+                		this.setX(this.getX() + (64 - this.getX() % 64));
+                		
+                	}
+                	else {
+                		
+                		this.setX(this.getX() - this.getX() % 64);
+                		
+                	}              
                     setY(getY()-64);
                 }
                 if(facing.equals("RIGHT")){
@@ -113,6 +164,16 @@ public class Player extends EntityBase {
 
                 }
                 if(facing.equals("DOWN")) {
+                	if(this.getX() % 64 >= 64 / 2 ) {
+                		
+                		this.setX(this.getX() + (64 - this.getX() % 64));
+                		
+                	}
+                	else {
+                		
+                		this.setX(this.getX() - this.getX() % 64);
+                		
+                	}              
                     setX(getX()+64);
                 }
                 facing = "RIGHT";
@@ -155,6 +216,8 @@ public class Player extends EntityBase {
     // The hazards have Rectangles of their own.
     // This is the Rectangle of the Player ~
 	public void UpdatePlayerRectangle(Graphics g) {
+		
+		Graphics2D g2 = (Graphics2D) g;
 
     	player = new Rectangle(this.getX(), this.getY(), getWidth(), getHeight());
 
@@ -164,6 +227,8 @@ public class Player extends EntityBase {
     	else if (facing.equals("RIGHT")) {
     		player = new Rectangle(this.getX() - 64, this.getY(), getWidth(), getHeight());
     	}
+    	
+    	g2.draw(player);
 	
     }
 
