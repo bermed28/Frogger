@@ -1,6 +1,7 @@
 package Game.Entities.Static;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import Game.Entities.EntityBase;
 import Game.World.BaseArea;
@@ -26,4 +27,8 @@ public class StaticBase extends EntityBase {
     public void setSpawnableArea(BaseArea spawnableArea) {
         SpawnableArea = spawnableArea;
     }
+
+	public Rectangle GetCollision() {
+		return new Rectangle();
+	}
 }
