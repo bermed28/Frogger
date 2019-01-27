@@ -12,6 +12,7 @@ public class Player extends EntityBase {
     Handler handler;
 
 
+    Rectangle player;
     String facing = "UP";
     Boolean moving = false;
     int moveCooleDown=0;
@@ -23,7 +24,7 @@ public class Player extends EntityBase {
         this.handler = handler;
         this.handler.getEntityManager().getEntityList().add(this);
 
-
+        player = new Rectangle();
     }
 
     public void tick(){
@@ -144,7 +145,26 @@ public class Player extends EntityBase {
                 g.drawImage(rotateClockwise90(Images.Player[index]), getX(), getY(), -1 * getWidth(), getHeight(), null);
                 break;
         }
+        
+        
+        UpdatePlayerRectangle(g);
 
+	}
+    
+    // Rectangles are what is used as "collisions." 
+    // The hazards have Rectangles of their own.
+    // This is the Rectangle of the Player ~
+	public void UpdatePlayerRectangle(Graphics g) {
+
+    	player = new Rectangle(this.getX(), this.getY(), getWidth(), getHeight());
+
+    	if (facing.equals("UP")){
+    		player = new Rectangle(this.getX(), this.getY() - 64, getWidth(), getHeight());
+    	}
+    	else if (facing.equals("RIGHT")) {
+    		player = new Rectangle(this.getX() - 64, this.getY(), getWidth(), getHeight());
+    	}
+	
     }
 
     public static BufferedImage rotateClockwise90(BufferedImage src) {
@@ -161,5 +181,8 @@ public class Player extends EntityBase {
         return dest;
     }
 
+    public Rectangle getPlayerCollision() {
+		return player;
+    }
 
 }

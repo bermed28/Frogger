@@ -6,6 +6,8 @@ import Game.Entities.Static.Log;
 import Game.Entities.Static.StaticBase;
 import Game.Entities.Static.Tree;
 import Main.Handler;
+import Resources.Images;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -66,54 +68,74 @@ public class WorldManager {
         }
     }
 
-    public void tick(){
-        for(BaseArea area : SpawnedAreas) {
-            area.tick();
-        }
-        
-    	for(int i=0; i<SpawnedAreas.size(); i++) {
-    		SpawnedAreas.get(i).setYPosition(SpawnedAreas.get(i).getYPosition()+movementSpeed);
-    		
-     		  	//Check if Area (thus a hazard as well) passed the screen.
-    			if(SpawnedAreas.get(i).getYPosition() > handler.getHeight()) {
-    				//Replace with a new random area and position it on top
-     			   SpawnedAreas.set(i, randomArea(-2*64));
-     		   }
-    			if(SpawnedAreas.get(i).getYPosition() < player.getY() && player.getY()-SpawnedAreas.get(i).getYPosition()<3) {
-    				player.setY(SpawnedAreas.get(i).getYPosition());
-    			}
-    			
-    			if (!(SpawnedHazards.size() <= i)) {
-    				SpawnedHazards.get(i).setY(SpawnedHazards.get(i).getY() + movementSpeed);
-    				
-    				if (SpawnedHazards.get(i) instanceof Log){
-    				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() + 1);
-    				}
-    				
-    				// if hazard has passed the screen height, then remove this hazard.
-    				if(SpawnedHazards.get(i).getY() > handler.getHeight()) {
-    					SpawnedHazards.remove(i);
-    				}
-    			}
-        }
-    	
-    	
-    
+	public void tick() {
+		for (BaseArea area : SpawnedAreas) {
+			area.tick();
+		}
+
+		for (int i = 0; i < SpawnedAreas.size(); i++) {
+			SpawnedAreas.get(i).setYPosition(SpawnedAreas.get(i).getYPosition() + movementSpeed);
+
+			// Check if Area (thus a hazard as well) passed the screen.
+			if (SpawnedAreas.get(i).getYPosition() > handler.getHeight()) {
+				// Replace with a new random area and position it on top
+				SpawnedAreas.set(i, randomArea(-2 * 64));
+			}
+			if (SpawnedAreas.get(i).getYPosition() < player.getY()
+					&& player.getY() - SpawnedAreas.get(i).getYPosition() < 3) {
+				player.setY(SpawnedAreas.get(i).getYPosition());
+			}
+		}
+		
+		HazardMovement();
+		
         player.tick();
         //make player move the same as the areas
         player.setY(player.getY()+movementSpeed);
     }
 
+	private void HazardMovement() {
+
+		for (int i = 0; i < SpawnedHazards.size(); i++) {
+
+			// Moves hazard down
+			SpawnedHazards.get(i).setY(SpawnedHazards.get(i).getY() + movementSpeed);
+
+			// Verifies the hazards aren't null
+			if (SpawnedHazards.get(i).GetCollision() != null) {
+				// If hazard is a log, and the player Rectangle intersects with the log Rectangle, then move player to the right.
+				if (SpawnedHazards.get(i) instanceof Log && player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
+					player.setX(player.getX() + 1);
+				}
+			}
+			
+			// Moves log to the right
+			if (SpawnedHazards.get(i) instanceof Log) {
+				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() + 1);
+			}
+
+			// if hazard has passed the screen height, then remove this hazard.
+			if (SpawnedHazards.get(i).getY() > handler.getHeight()) {
+				SpawnedHazards.remove(i);
+			}
+
+		}
+	}
+	
+	
     public void render(Graphics g){
+    	
        for(BaseArea area : SpawnedAreas) {
     	   area.render(g);
        }
     	
        for (StaticBase hazards : SpawnedHazards) {
     		hazards.render(g);
+ 
        }
     	
        player.render(g);
+
     }
     
     //Returns a random area
