@@ -1,5 +1,7 @@
 package Game.Entities.Static;
 
+import java.awt.Graphics;
+
 import Game.Entities.EntityBase;
 import Game.World.BaseArea;
 import Main.Handler;
@@ -12,6 +14,11 @@ public class StaticBase extends EntityBase {
         super(handler);
     }
 
+    public void render(Graphics g) {
+    	
+    }
+    
+    
     public BaseArea getSpawnableArea() {
         return SpawnableArea;
     }
