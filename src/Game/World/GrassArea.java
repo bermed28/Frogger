@@ -1,8 +1,6 @@
 package Game.World;
 
-import java.awt.Color;
 import java.awt.Graphics;
-
 import Main.Handler;
 import Resources.Images;
 

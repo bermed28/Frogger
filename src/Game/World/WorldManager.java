@@ -6,7 +6,6 @@ import Game.Entities.Static.Log;
 import Game.Entities.Static.StaticBase;
 import Game.Entities.Static.Tree;
 import Main.Handler;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
@@ -49,7 +48,7 @@ public class WorldManager {
 
         gridWidth = handler.getWidth()/64;
         gridHeight = handler.getHeight()/64;
-        movementSpeed = 2;
+        movementSpeed = 1;
         
         //Spawn Areas in Map (2 extra areas spawned off screen)
         for(int i=0; i<gridHeight+2; i++) {
@@ -88,7 +87,7 @@ public class WorldManager {
     				SpawnedHazards.get(i).setY(SpawnedHazards.get(i).getY() + movementSpeed);
     				
     				if (SpawnedHazards.get(i) instanceof Log){
-    				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() + (movementSpeed / 2));
+    				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() + 1);
     				}
     				
     				// if hazard has passed the screen height, then remove this hazard.
