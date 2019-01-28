@@ -167,11 +167,11 @@ public class WorldManager {
 	private void SpawnHazard(int yPosition) {
 		Random rand = new Random();
 		int randInt;
-		int choice = rand.nextInt(6);
+		int choice = rand.nextInt(7);
 		// Chooses between Log or Lillypad
 		if (choice <=2) {
 			randInt = 64 * rand.nextInt(4);
-			SpawnedHazards.add(new Turtle(handler, randInt, yPosition));
+			SpawnedHazards.add(new Log(handler, randInt, yPosition));
 		}
 		else if (choice >=5){
 			randInt = 64 * rand.nextInt(9);
