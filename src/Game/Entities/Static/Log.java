@@ -26,7 +26,6 @@ public class Log extends StaticBase {
     
     @Override
     public Rectangle GetCollision() {
-    	
     	return log;
     }
 }

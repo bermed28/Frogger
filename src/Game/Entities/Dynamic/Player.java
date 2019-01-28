@@ -196,8 +196,6 @@ public class Player extends EntityBase {
     // This is the Rectangle of the Player ~
     private  void UpdatePlayerRectangle(Graphics g) {
 
-        Graphics2D g2 = (Graphics2D) g;
-
         player = new Rectangle(this.getX(), this.getY(), getWidth(), getHeight());
 
         if (facing.equals("UP")){
@@ -206,9 +204,6 @@ public class Player extends EntityBase {
         else if (facing.equals("RIGHT")) {
             player = new Rectangle(this.getX() - 64, this.getY(), getWidth(), getHeight());
         }
-
-        g2.draw(player);
-
     }
 
     @SuppressWarnings("SuspiciousNameCombination")
