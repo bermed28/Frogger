@@ -10,8 +10,7 @@ import java.awt.image.BufferedImage;
 
 public class Player extends EntityBase {
     Handler handler;
-
-    public int score = 0;
+    
     Rectangle player;
     String facing = "UP";
     Boolean moving = false;
@@ -80,8 +79,6 @@ public class Player extends EntityBase {
 
             if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && facing.equals("UP")){
                 moving=true;
-                this.score = this.score + 1;
-            	System.out.println("Score is: " + this.score);
             }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && !facing.equals("UP")){
                 if(facing.equals("DOWN")) {
                 		if(this.getX() % 64 >= 64 / 2 ) {

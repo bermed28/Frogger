@@ -58,7 +58,7 @@ public class WorldManager {
         
         //Zekrom and the queue for Zekrom to appear. ~JJMP
         bird = new Bird();        
-        birdQueue = new BirdQueue(this.gridWidth / 2, 2);
+        birdQueue = new BirdQueue( 576 / 2, - 576 / 2);
 
         gridWidth = handler.getWidth()/64;
         gridHeight = handler.getHeight()/64;
@@ -83,7 +83,11 @@ public class WorldManager {
 
 	public void tick() {
 		
-		if(this.birdQueue.getyPos() >= handler.getGame().getHeight() - 40) bird.onScreen = true;
+		if(this.birdQueue.getyPos() >= handler.getGame().getHeight() * 2) {
+			
+			bird.setOnScreen(true);
+		
+		}
 		
 		for (BaseArea area : SpawnedAreas) {
 			area.tick();

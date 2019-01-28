@@ -64,7 +64,7 @@ public class Bird {
 
 			if(this.xPos >= 768) {
 
-				this.onScreen = false;
+				this.setOnScreen(false);
 
 				this.setxPos(0 - this.width);
 
@@ -86,7 +86,7 @@ public class Bird {
 			
 			if(this.xPos + this.getWidth() <= 0) {
 
-				this.onScreen = false;
+				this.setOnScreen(false);
 
 				this.setxPos(576 + this.width);
 
@@ -135,6 +135,14 @@ public class Bird {
 	}
 	public void setHeight(int height) {
 		this.height = height;
+	}
+
+	public boolean isOnScreen() {
+		return onScreen;
+	}
+
+	public void setOnScreen(boolean onScreen) {
+		this.onScreen = onScreen;
 	}
 
 }

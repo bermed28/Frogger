@@ -27,11 +27,10 @@ public class BirdQueue {
 	}
 	
 	public void tick() {
-		
-		this.setxPos(1);
+
 		this.setyPos(this.getyPos() + 1);
 		
-		if(this.getyPos() + this.getHeight() >= 768) {
+		if(this.getyPos() >= handler.getGame().getHeight() * 2) {
 			
 			this.setyPos(1);
 			
