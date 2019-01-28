@@ -53,7 +53,7 @@ public class Turtle extends StaticBase {
     	
     	int frame = anim.getIndex();
     	
-    	if (frame >= 4 && frame <= 15){
+    	if (frame >= 4 && frame <= 17){
     		return false;
     	}
     	else
