@@ -35,6 +35,8 @@ public class Images {
     public static BufferedImage log;
     public static BufferedImage grass;
 
+    public static BufferedImage[] bird;
+
 
     public Images() {
 
@@ -44,6 +46,7 @@ public class Images {
         Options = new BufferedImage[2];
         Player = new BufferedImage[8];
         Water = new BufferedImage[3];
+        bird = new BufferedImage[3];
 
         try {
             playerSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/gameSprites.png")));
@@ -76,6 +79,9 @@ public class Images {
 
             lilly = playerSheet.crop(6,170,61,55);
             log = playerSheet.crop(387,259,184,57);
+            
+            bird[0] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Zekrom.png"));
+            bird[1] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Zekrom2.png"));
 
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/froggy.png")));
             

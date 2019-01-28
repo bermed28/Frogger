@@ -1,6 +1,8 @@
 package Game.World;
 
+import Game.Entities.Dynamic.Bird;
 import Game.Entities.Dynamic.Player;
+import Game.Entities.Static.BirdQueue;
 import Game.Entities.Static.LillyPad;
 import Game.Entities.Static.Log;
 import Game.Entities.Static.StaticBase;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class WorldManager {
+	
+	public int counter = 0;
 
     ArrayList<BaseArea> AreasAvailables;//Lake, empty and grass area
     ArrayList<StaticBase> StaticEntitiesAvailables;//trees, lillies, logs
@@ -23,6 +27,10 @@ public class WorldManager {
     Handler handler;
 
     Player player;
+    
+    Bird bird;
+    
+    BirdQueue birdQueue;
 
     ID[][] grid;
     int gridWidth,gridHeight;
@@ -47,6 +55,10 @@ public class WorldManager {
         SpawnedHazards = new ArrayList<>();
         
         player = new Player(handler);
+        
+        //Zekrom and the queue for Zekrom to appear. ~JJMP
+        bird = new Bird();        
+        birdQueue = new BirdQueue(this.gridWidth / 2, 2);
 
         gridWidth = handler.getWidth()/64;
         gridHeight = handler.getHeight()/64;
@@ -59,7 +71,8 @@ public class WorldManager {
         	
         player.setX((gridWidth/2)*64);
         player.setY((gridHeight-3)*64);
-
+        
+        
         grid = new ID[gridWidth][gridHeight];
         for (int x = 0; x < gridWidth; x++) {
             for (int y = 0; y < gridHeight; y++) {
@@ -69,6 +82,9 @@ public class WorldManager {
     }
 
 	public void tick() {
+		
+		if(this.birdQueue.getyPos() >= handler.getGame().getHeight() - 40) bird.onScreen = true;
+		
 		for (BaseArea area : SpawnedAreas) {
 			area.tick();
 		}
@@ -92,6 +108,12 @@ public class WorldManager {
         player.tick();
         //make player move the same as the areas
         player.setY(player.getY()+movementSpeed);
+        
+        //makes Zekrom appear on the screen ~JJMP 
+        
+        bird.tick();
+        birdQueue.tick();
+   
     }
 
 	private void HazardMovement() {
@@ -125,6 +147,8 @@ public class WorldManager {
 	
     public void render(Graphics g){
     	
+    	birdQueue.render(g);
+    	
        for(BaseArea area : SpawnedAreas) {
     	   area.render(g);
        }
@@ -135,6 +159,8 @@ public class WorldManager {
        }
     	
        player.render(g);
+       
+       bird.render(g);      
 
     }
     
