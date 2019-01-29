@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class WorldManager {
-	
-
 
     ArrayList<BaseArea> AreasAvailables;//Lake, empty and grass area
     ArrayList<StaticBase> StaticEntitiesAvailables;//trees, lillies, logs
@@ -79,11 +77,12 @@ public class WorldManager {
 
 	public void tick() {
 		
-		if(handler.getKeyManager().JJMPButton) {
-
-				this.object2.onScreen = true;
-
-		}
+		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_J))  this.object2.code = this.object2.code + "J";
+		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_M)) this.object2.code = this.object2.code + "M";
+		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_P)) this.object2.code = this.object2.code + "P";
+		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER)) this.object2.checkCode();
+		
+		if(handler.getKeyManager().JJMPButton && this.object2.codeEnteredCorrectly) this.object2.onScreen = true;		
 		
 		for (BaseArea area : SpawnedAreas) {
 			area.tick();

@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -82,12 +83,15 @@ public class UIManager {
         }
     }
     
-    //JJMP
+    //*
     
     public class JJMP {
 
     	Handler handler;
     	Random random = new Random();
+    	Scanner scanner = new Scanner(System.in);
+    	public String code = "";
+    	public Boolean codeEnteredCorrectly = false;
 
     	public boolean onScreen = false;
 
@@ -172,6 +176,25 @@ public class UIManager {
     		}
     		
     	}
+    	
+    	public void checkCode() {
+    		
+    		if(this.code.equals("JMP")) {
+				
+				this.codeEnteredCorrectly = true;
+				System.out.println("Code entered correctly. XD");
+			
+			}
+    		
+			else{
+				
+				this.codeEnteredCorrectly = false;
+				System.out.println("Code incorrect. >w<");
+				this.code = "";
+			
+			}
+    		
+    	}	
 
     	public int getSpeed() {
     		return speed;
