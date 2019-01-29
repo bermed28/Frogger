@@ -28,5 +28,4 @@ public class WaterArea extends BaseArea {
             g.drawImage(anim.getCurrentFrame(), i*64, yPosition,64,66, null);
         }
     }
-
 }

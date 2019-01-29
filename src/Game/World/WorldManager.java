@@ -5,6 +5,7 @@ import Game.Entities.Static.LillyPad;
 import Game.Entities.Static.Log;
 import Game.Entities.Static.StaticBase;
 import Game.Entities.Static.Tree;
+import Game.Entities.Static.Turtle;
 import Main.Handler;
 import java.awt.*;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class WorldManager {
         StaticEntitiesAvailables.add(new LillyPad(handler, 0, 0));
         StaticEntitiesAvailables.add(new Log(handler, 0, 0));
         StaticEntitiesAvailables.add(new Tree(handler));
+        StaticEntitiesAvailables.add(new Turtle(handler, 0, 0));
 
         SpawnedAreas = new ArrayList<>();
         SpawnedHazards = new ArrayList<>();
@@ -70,6 +72,11 @@ public class WorldManager {
 		for (BaseArea area : SpawnedAreas) {
 			area.tick();
 		}
+		for (StaticBase hazard : SpawnedHazards) {
+			hazard.tick();
+		}
+		
+		
 
 		for (int i = 0; i < SpawnedAreas.size(); i++) {
 			SpawnedAreas.get(i).setYPosition(SpawnedAreas.get(i).getYPosition() + movementSpeed);
@@ -93,30 +100,30 @@ public class WorldManager {
     }
 
 	private void HazardMovement() {
-
+		
 		for (int i = 0; i < SpawnedHazards.size(); i++) {
 
 			// Moves hazard down
 			SpawnedHazards.get(i).setY(SpawnedHazards.get(i).getY() + movementSpeed);
 
-			// Verifies the hazards aren't null
-			if (SpawnedHazards.get(i).GetCollision() != null) {
-				// If hazard is a log, and the player Rectangle intersects with the log Rectangle, then move player to the right.
-				if (SpawnedHazards.get(i) instanceof Log && player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
+			// Moves Log or Turtle to the right
+			if (SpawnedHazards.get(i) instanceof Log || SpawnedHazards.get(i) instanceof Turtle) {
+				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() + 1);
+
+				// Verifies the hazards Rectangles aren't null and
+				// If the player Rectangle intersects with the Log or Turtle Rectangle, then
+				// move player to the right.
+				if (SpawnedHazards.get(i).GetCollision() != null
+						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
 					player.setX(player.getX() + 1);
 				}
-			}
-			
-			// Moves log to the right
-			if (SpawnedHazards.get(i) instanceof Log) {
-				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() + 1);
+
 			}
 
 			// if hazard has passed the screen height, then remove this hazard.
 			if (SpawnedHazards.get(i).getY() > handler.getHeight()) {
 				SpawnedHazards.remove(i);
 			}
-
 		}
 	}
 	
@@ -160,15 +167,21 @@ public class WorldManager {
 	private void SpawnHazard(int yPosition) {
 		Random rand = new Random();
 		int randInt;
+		int choice = rand.nextInt(7);
 		// Chooses between Log or Lillypad
-		if (rand.nextBoolean()) {
+		if (choice <=2) {
 			randInt = 64 * rand.nextInt(4);
-    		SpawnedHazards.add(new Log(handler, randInt, yPosition));
+			SpawnedHazards.add(new Log(handler, randInt, yPosition));
 		}
-		else {
+		else if (choice >=5){
 			randInt = 64 * rand.nextInt(9);
 			SpawnedHazards.add(new LillyPad(handler, randInt, yPosition));
 		}
+		else {
+			randInt = 64 * rand.nextInt(3);
+			SpawnedHazards.add(new Turtle(handler, randInt, yPosition));
+		}
+			
 	}
     
 }

@@ -1,0 +1,62 @@
+package Game.Entities.Static;
+
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.util.Random;
+
+import Main.Handler;
+import Resources.Animation;
+import Resources.Images;
+
+public class Turtle extends StaticBase {
+	
+	private Animation anim;
+	private Rectangle turtle;
+	private Random rand;
+
+	public Turtle(Handler handler, int xPosition, int yPosition) {
+		super(handler);
+		this.setX(xPosition);
+		this.setY(yPosition);
+		rand = new Random();
+		anim = new Animation(200, Images.Turtle, rand.nextInt(20));
+	}
+	
+	@Override
+	public void tick() {
+		anim.tick();
+	}
+	
+	@Override
+	public void render(Graphics g) { 
+		
+		
+			
+			
+			if (!WentUnderWater()) {
+				g.drawImage(anim.getCurrentFrame(), this.getX(), this.getY(), 80, 64, null);	
+				turtle = new Rectangle(this.getX()+30, this.getY(), 20, 55);
+			}
+			else {
+				g.drawImage(anim.getCurrentFrame(), this.getX(), this.getY(), 80, 64, null);
+				turtle = new Rectangle();
+			}
+				
+	}
+	
+    @Override
+    public Rectangle GetCollision() {
+    	return turtle;
+    }
+    
+    public boolean WentUnderWater(){
+    	
+    	int frame = anim.getIndex();
+    	
+    	if (frame >= 4 && frame <= 17){
+    		return false;
+    	}
+    	else
+    		return true;
+    }
+}

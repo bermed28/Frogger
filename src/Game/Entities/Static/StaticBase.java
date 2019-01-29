@@ -19,6 +19,10 @@ public class StaticBase extends EntityBase {
     	
     }
     
+    public void tick() {
+    	
+    }
+    
     
     public BaseArea getSpawnableArea() {
         return SpawnableArea;
