@@ -12,6 +12,7 @@ public class LillyPad extends StaticBase {
 	
     public LillyPad(Handler handler,int xPosition, int yPosition) {
         super(handler);
+        // Sets original position to be this one.
         this.setY(yPosition);
         this.setX(xPosition);
         

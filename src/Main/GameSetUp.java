@@ -17,6 +17,10 @@ import java.awt.image.BufferedImage;
  * Created by AlexVR on 7/1/2018.
  */
 
+
+/*
+ * Try to understand the LOGIC behind this first. (aka don't overthink this, just try to understand the concept)
+ */
 public class GameSetUp implements Runnable {
     private DisplayScreen display;
     private int width, height;
@@ -129,6 +133,11 @@ public class GameSetUp implements Runnable {
 
     }
 
+    /*
+     * Many classes will have this badboy (and the render.)
+     * With the tick you can check stuff every "tick" which is called like a lot of times per second (like 60).
+     * And with it you can move an object every tick, or check for conditions every tick, etc.
+     */
     private void tick(){
         //checks for key types and manages them
         keyManager.tick();
@@ -138,6 +147,10 @@ public class GameSetUp implements Runnable {
             State.getState().tick();
     }
 
+    /*
+     * As stated before, many classes have a render method. Because it is like a brush, where you can draw stuff on it
+     * And since it is called many times, then you can modify what you draw every time it is called!
+     */
     private void render(){
         BufferStrategy bs = display.getCanvas().getBufferStrategy();
         if(bs == null){
@@ -148,7 +161,6 @@ public class GameSetUp implements Runnable {
         //Clear Screen
         g.clearRect(0, 0, width, height);
 
-        //Draw Here!
 
         g.drawImage(loading ,0,0,width,height,null);
         if(State.getState() != null)

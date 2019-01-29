@@ -12,9 +12,9 @@ public class Log extends StaticBase {
 	
     public Log(Handler handler,int xPosition, int yPosition) {
         super(handler);
-        this.setX(xPosition);
+        // Sets original position to be this one.
+        this.setX(xPosition); 
         this.setY(yPosition);
-        
     }
     
     @Override

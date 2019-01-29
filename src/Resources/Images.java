@@ -8,6 +8,10 @@ import java.io.IOException;
 /**
  * Created by AlexVR on 7/1/2018.
  */
+
+/*
+ * Here we add sprites/animations, and crop them (use paint to find coordinates), 
+ */
 public class Images {
 
 

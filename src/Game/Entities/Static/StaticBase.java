@@ -7,6 +7,7 @@ import Game.Entities.EntityBase;
 import Game.World.BaseArea;
 import Main.Handler;
 
+
 public class StaticBase extends EntityBase {
 
     private BaseArea SpawnableArea;
@@ -15,6 +16,9 @@ public class StaticBase extends EntityBase {
         super(handler);
     }
 
+    /*
+     * Draws the hazard, and the Rectangle.
+     */
     public void render(Graphics g) {
     	
     }
@@ -22,7 +26,6 @@ public class StaticBase extends EntityBase {
     public void tick() {
     	
     }
-    
     
     public BaseArea getSpawnableArea() {
         return SpawnableArea;
@@ -32,6 +35,9 @@ public class StaticBase extends EntityBase {
         SpawnableArea = spawnableArea;
     }
 
+    /*
+     * Obtains the Rectangle of this Area.
+     */
 	public Rectangle GetCollision() {
 		return new Rectangle();
 	}

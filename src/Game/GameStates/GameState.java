@@ -10,6 +10,11 @@ import com.sun.glass.events.KeyEvent;
 /**
  * Created by AlexVR on 7/1/2018.
  */
+
+/*
+ * This is the state once the game is Started.
+ * The WorldManager Class is constructed.
+ */
 public class GameState extends State {
 
 

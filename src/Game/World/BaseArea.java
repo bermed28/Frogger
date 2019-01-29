@@ -11,6 +11,9 @@ public class BaseArea {
 
     boolean canStepOn = true;
 
+    /*
+     * Constructs the yPosition of the Tile.
+     */
     BaseArea(Handler handler, int yPosition) {
         this.handler = handler;
         this.yPosition = yPosition;
@@ -20,6 +23,7 @@ public class BaseArea {
 
     }
     
+    // Draws the tile.
     public void render(Graphics g) {
     	
     }

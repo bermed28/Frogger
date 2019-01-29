@@ -11,30 +11,37 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Literally the world. This class is very important to understand.
+ * Here we spawn our hazards (StaticBase), and our tiles (BaseArea)
+ * 
+ * We move the screen, the player, and some hazards. 
+ * 				How? Figure it out.
+ */
 public class WorldManager {
 
-	private ArrayList<BaseArea> AreasAvailables;//Lake, empty and grass area
-	private ArrayList<StaticBase> StaticEntitiesAvailables;//trees, lillies, logs
+	private ArrayList<BaseArea> AreasAvailables;			// Lake, empty and grass area (NOTE: The empty tile is just the "sand" tile. Ik, weird name.)
+	private ArrayList<StaticBase> StaticEntitiesAvailables;	// Has the hazards: LillyPad, Log, Tree, and Turtle.
 
-	private ArrayList<BaseArea> SpawnedAreas;		//Areas currently on world
-	private ArrayList<StaticBase> SpawnedHazards;	//Hazards currently on world.
+	private ArrayList<BaseArea> SpawnedAreas;				// Areas currently on world
+	private ArrayList<StaticBase> SpawnedHazards;			// Hazards currently on world.
     
     Handler handler;
 
-	private Player player;
+	private Player player;									// How do we find the frog coordinates? How do we find the Collisions? This bad boy.
 
-	private ID[][] grid;
-	private int gridWidth,gridHeight;
-	private int movementSpeed;
+	private ID[][] grid;									
+	private int gridWidth,gridHeight;						// Size of the grid. 
+	private int movementSpeed;								// Movement of the tiles going downwards.
     
 
     public WorldManager(Handler handler) {
         this.handler = handler;
 
-        AreasAvailables = new ArrayList<>();
-        StaticEntitiesAvailables = new ArrayList<>();
+        AreasAvailables = new ArrayList<>();				// Here we add the Tiles to be utilized.
+        StaticEntitiesAvailables = new ArrayList<>();		// Here we add the Hazards to be utilized.
 
-        AreasAvailables.add(new GrassArea(handler, 0));
+        AreasAvailables.add(new GrassArea(handler, 0));		
         AreasAvailables.add(new WaterArea(handler, 0));
         AreasAvailables.add(new EmptyArea(handler, 0));
 
@@ -51,8 +58,12 @@ public class WorldManager {
         gridWidth = handler.getWidth()/64;
         gridHeight = handler.getHeight()/64;
         movementSpeed = 1;
+        // movementSpeed = 20; I dare you.
         
-        //Spawn Areas in Map (2 extra areas spawned off screen)
+        /* 
+         * 	Spawn Areas in Map (2 extra areas spawned off screen)
+         *  To understand this, go down to randomArea(int yPosition) 
+         */
         for(int i=0; i<gridHeight+2; i++) {
         	SpawnedAreas.add(randomArea((-2+i)*64));
         }
@@ -60,6 +71,7 @@ public class WorldManager {
         player.setX((gridWidth/2)*64);
         player.setY((gridHeight-3)*64);
 
+        // Not used atm.
         grid = new ID[gridWidth][gridHeight];
         for (int x = 0; x < gridWidth; x++) {
             for (int y = 0; y < gridHeight; y++) {
@@ -77,7 +89,7 @@ public class WorldManager {
 		}
 		
 		
-
+		
 		for (int i = 0; i < SpawnedAreas.size(); i++) {
 			SpawnedAreas.get(i).setYPosition(SpawnedAreas.get(i).getYPosition() + movementSpeed);
 
@@ -143,10 +155,16 @@ public class WorldManager {
 
     }
     
-    //Returns a random area
+    /*
+     * Given a yPosition, this method will return a random Area out of the Available ones.)
+     * It is also in charge of spawning hazards at a specific condition.
+     */
 	private BaseArea randomArea(int yPosition) {
     	Random rand = new Random();
-    	BaseArea randomArea = AreasAvailables.get(rand.nextInt(AreasAvailables.size()));
+    	
+    	// From the AreasAvailable, get me any random one.
+    	BaseArea randomArea = AreasAvailables.get(rand.nextInt(AreasAvailables.size())); 
+    	
     	if(randomArea instanceof GrassArea) {
     		randomArea = new GrassArea(handler, yPosition);
     	}
@@ -160,10 +178,9 @@ public class WorldManager {
     	return randomArea;
     }
 
-    // TODO:
-    //	1. Add Tree choice implementation
-    // 	2. Deny two Lillypads from spawning one after the other.
-	//	3. Add multiple Logs with same speed in the same AreaRow.
+	/*
+	 * Given a yPositionm this method will add a new hazard to the SpawnedHazards ArrayList
+	 */
 	private void SpawnHazard(int yPosition) {
 		Random rand = new Random();
 		int randInt;
