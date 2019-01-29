@@ -12,13 +12,14 @@ public class WaterArea extends BaseArea {
 
     WaterArea(Handler handler, int yPosition) {
         super(handler, yPosition);
+        // Instantiate the animation of this Water, and it starts it at a random frame.
         anim=new Animation(384,Images.Water,new Random().nextInt(3));
 
     }
 
     @Override
     public void tick() {
-        anim.tick();
+        anim.tick();	// Animation frame movement.
 
     }
 

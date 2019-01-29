@@ -10,7 +10,6 @@ import Input.MouseManager;
 /**
  * Created by AlexVR on 7/1/2018.
  */
-
 public class Handler {
 
     private GameSetUp game;

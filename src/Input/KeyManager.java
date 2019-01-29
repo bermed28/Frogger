@@ -8,6 +8,9 @@ import java.awt.event.KeyListener;
  * Created by AlexVR on 7/1/2018.
  */
 
+/*
+ * How we manage input.
+ */
 public class KeyManager implements KeyListener {
 
 	private boolean[] keys,justPressed,cantPress;

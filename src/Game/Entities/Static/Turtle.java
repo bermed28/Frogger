@@ -16,22 +16,21 @@ public class Turtle extends StaticBase {
 
 	public Turtle(Handler handler, int xPosition, int yPosition) {
 		super(handler);
+		 // Sets original position to be this one.
 		this.setX(xPosition);
 		this.setY(yPosition);
 		rand = new Random();
+		// Instantiate the animation of this Turtle, and starts it at a random frame.
 		anim = new Animation(200, Images.Turtle, rand.nextInt(20));
 	}
 	
 	@Override
 	public void tick() {
-		anim.tick();
+		anim.tick();	// Animation frame movement.
 	}
 	
 	@Override
 	public void render(Graphics g) { 
-		
-		
-			
 			
 			if (!WentUnderWater()) {
 				g.drawImage(anim.getCurrentFrame(), this.getX(), this.getY(), 80, 64, null);	
@@ -49,6 +48,9 @@ public class Turtle extends StaticBase {
     	return turtle;
     }
     
+    /*
+     * Verifies the frame the Turtle is underground.
+     */
     public boolean WentUnderWater(){
     	
     	int frame = anim.getIndex();

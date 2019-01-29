@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
+/*
+ * The Frog.
+ */
 public class Player extends EntityBase {
     private Handler handler;
 
@@ -24,7 +27,7 @@ public class Player extends EntityBase {
         this.handler = handler;
         this.handler.getEntityManager().getEntityList().add(this);
 
-        player = new Rectangle();
+        player = new Rectangle(); 	// see UpdatePlayerRectangle(Graphics g) for its usage.
     }
 
     public void tick(){
@@ -193,8 +196,9 @@ public class Player extends EntityBase {
 
     // Rectangles are what is used as "collisions." 
     // The hazards have Rectangles of their own.
-    // This is the Rectangle of the Player ~
-    private  void UpdatePlayerRectangle(Graphics g) {
+    // This is the Rectangle of the Player.
+    // Both come in play inside the WorldManager.
+    private void UpdatePlayerRectangle(Graphics g) {
 
         player = new Rectangle(this.getX(), this.getY(), getWidth(), getHeight());
 
