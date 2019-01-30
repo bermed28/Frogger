@@ -7,7 +7,10 @@ import Game.Entities.Static.StaticBase;
 import Game.Entities.Static.Tree;
 import Game.Entities.Static.Turtle;
 import Main.Handler;
+import UI.UIManager;
+
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -26,9 +29,17 @@ public class WorldManager {
 	private ArrayList<BaseArea> SpawnedAreas;				// Areas currently on world
 	private ArrayList<StaticBase> SpawnedHazards;			// Hazards currently on world.
     
+    Long time;
+    Boolean reset = true;
+    
     Handler handler;
 
+
 	private Player player;									// How do we find the frog coordinates? How do we find the Collisions? This bad boy.
+    
+    UIManager object = new UIManager(handler);
+    UI.UIManager.Object object2 = object.new Object();
+
 
 	private ID[][] grid;									
 	private int gridWidth,gridHeight;						// Size of the grid. 
@@ -53,7 +64,7 @@ public class WorldManager {
         SpawnedAreas = new ArrayList<>();
         SpawnedHazards = new ArrayList<>();
         
-        player = new Player(handler);
+        player = new Player(handler);       
 
         gridWidth = handler.getWidth()/64;
         gridHeight = handler.getHeight()/64;
@@ -81,6 +92,37 @@ public class WorldManager {
     }
 
 	public void tick() {
+		
+		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[2])) {//*
+			this.object2.word = this.object2.word + this.handler.getKeyManager().str[1];
+		}
+		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[0])) {//*
+			this.object2.word = this.object2.word + this.handler.getKeyManager().str[2];
+		}
+		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[1])) {//*
+			this.object2.word = this.object2.word + this.handler.getKeyManager().str[0];
+		}
+		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[3])) {//*
+			this.object2.getValidation();
+		}
+		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER) && this.object2.mayEnterValidation) {//*
+			this.object2.checkCode();
+		}
+		
+		if(this.reset) {//*
+			time = System.currentTimeMillis();//*
+			this.reset = false;//*
+		}
+		
+		if(this.object2.validationEnteredCorrectly) {//*
+			
+			if(System.currentTimeMillis() - this.time >= 2000) {//*		
+				this.object2.setOnScreen(true);	
+				this.reset = true;
+			}
+			
+		}
+		
 		for (BaseArea area : SpawnedAreas) {
 			area.tick();
 		}
@@ -109,7 +151,10 @@ public class WorldManager {
 		
         player.tick();
         //make player move the same as the areas
-        player.setY(player.getY()+movementSpeed);
+        player.setY(player.getY()+movementSpeed); 
+        
+        object2.tick();
+   
     }
 
 	private void HazardMovement() {
@@ -152,7 +197,8 @@ public class WorldManager {
  
        }
     	
-       player.render(g);
+       player.render(g);       
+       this.object2.render(g);      
 
     }
     

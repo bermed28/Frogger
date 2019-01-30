@@ -49,5 +49,9 @@ public class Animation {
     public int getIndex() {
     	return index;
     }
+    
+    public static String getLtr() {
+    	return "M";
+    }
 
 }

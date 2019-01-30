@@ -2,6 +2,10 @@ package Resources;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import Main.GameSetUp;
+import UI.UIObject;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -22,6 +26,7 @@ public class Images {
     public static BufferedImage[] BTitle;
     public static BufferedImage[] Options;
     public static ImageIcon icon;
+    public static String str;
     public static BufferedImage icon2;
 
     public static SpriteSheet playerSheet;
@@ -40,6 +45,8 @@ public class Images {
     public static BufferedImage log;
     public static BufferedImage grass;
 
+    public static BufferedImage[] object;
+
 
     public Images() {
 
@@ -50,6 +57,7 @@ public class Images {
         Player = new BufferedImage[8];
         Turtle = new BufferedImage[20];
         Water = new BufferedImage[3];
+        object = new BufferedImage[6];
 
         try {
             playerSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/gameSprites.png")));
@@ -113,6 +121,14 @@ public class Images {
 
             lilly = playerSheet.crop(6,170,61,55);
             log = playerSheet.crop(387,259,184,57);
+            
+            object[0] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object1.png"));
+            object[1] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object2.png"));
+            object[2] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object3.png"));
+            object[3] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object4.png"));
+            object[4] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object5.png"));
+            object[5] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object6.png"));
+            str = GameSetUp.str;
 
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/froggy.png")));
             

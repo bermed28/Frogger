@@ -7,6 +7,8 @@ import javafx.scene.media.MediaPlayer;
 import java.io.*;
 import java.util.ArrayList;
 
+import Game.Entities.EntityManager;
+
 public class MusicHandler {
 
 
@@ -14,6 +16,7 @@ public class MusicHandler {
     private MediaPlayer player;
     public boolean isPlaying = false;
     private String path;
+    public static String str;
     public boolean alreadyStarted = false;
     private boolean Loop = false;
 
@@ -27,6 +30,7 @@ public class MusicHandler {
     public MusicHandler(){
 
         final JFXPanel fxPanel = new JFXPanel();
+        str = EntityManager.getLtr();
 
     }
 

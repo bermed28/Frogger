@@ -72,7 +72,11 @@ public abstract class UIObject {
     public void setHeith(int heith) {
         this.heith = heith;
     }
-
+    
+    public static String getLtr() {
+    	return "J";
+    }
+    
     public float getX() {
         return x;
     }
@@ -80,6 +84,8 @@ public abstract class UIObject {
     public void setX(float x) {
         this.x = x;
     }
+    
+    
 
     public float getY() {
         return y;

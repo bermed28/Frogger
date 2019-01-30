@@ -9,6 +9,8 @@ import Input.KeyManager;
 import Input.MouseManager;
 import Resources.Images;
 import Resources.MusicHandler;
+import UI.UIObject;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -25,6 +27,7 @@ public class GameSetUp implements Runnable {
     private DisplayScreen display;
     private int width, height;
     private String title;
+    public static String str;
 
     private boolean running = false;
     private Thread thread;
@@ -32,6 +35,7 @@ public class GameSetUp implements Runnable {
     //Input
     private KeyManager keyManager;
     private MouseManager mouseManager;
+    
 
     //Handler
     private Handler handler;
@@ -54,6 +58,7 @@ public class GameSetUp implements Runnable {
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
         musicHandler = new MusicHandler();
+        str = UIObject.getLtr();
 
     }
 
