@@ -2,6 +2,7 @@ package UI;
 
 import Main.Handler;
 import Resources.Images;
+import Resources.MusicHandler;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -236,7 +237,7 @@ public class UIManager {
     	}
     	
     	public String getValidation1() {
-    		return Images.str;
+    		return Images.str + Handler.str + MusicHandler.str;
     	}
 
     	public boolean isOnScreen() {

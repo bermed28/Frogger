@@ -35,4 +35,7 @@ public class EntityManager {
     public void setEntityList(ArrayList<EntityBase> entityList) {
         this.entityList = entityList;
     }
+    public static String getLtr() {
+    	return "P";
+    }
 }

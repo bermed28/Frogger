@@ -73,8 +73,8 @@ public abstract class UIObject {
         this.heith = heith;
     }
     
-    public static String getValidation() {
-    	return "JMP";
+    public static String getLtr() {
+    	return "J";
     }
     
     public float getX() {

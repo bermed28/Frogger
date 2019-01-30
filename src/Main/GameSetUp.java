@@ -58,7 +58,7 @@ public class GameSetUp implements Runnable {
         keyManager = new KeyManager();
         mouseManager = new MouseManager();
         musicHandler = new MusicHandler();
-        str = UIObject.getValidation();
+        str = UIObject.getLtr();
 
     }
 

@@ -5,6 +5,7 @@ import Game.Entities.EntityManager;
 import Game.World.WorldManager;
 import Input.KeyManager;
 import Input.MouseManager;
+import Resources.Animation;
 
 
 /**
@@ -16,6 +17,7 @@ public class Handler {
     private EntityManager entityManager;
     private WorldManager world;
     private Player player;
+    public static String str = Animation.getLtr();
 
 
     public Handler(GameSetUp game){
