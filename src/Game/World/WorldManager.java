@@ -23,6 +23,9 @@ public class WorldManager {
     ArrayList<BaseArea> SpawnedAreas;		//Areas currently on world
     ArrayList<StaticBase> SpawnedHazards;	//Hazards currently on world.
     
+    Long time;
+    Boolean reset = true;
+    
     Handler handler;
 
     Player player;
@@ -77,12 +80,35 @@ public class WorldManager {
 
 	public void tick() {
 		
-		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_J))  this.object2.code = this.object2.code + "J";
-		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_M)) this.object2.code = this.object2.code + "M";
-		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_P)) this.object2.code = this.object2.code + "P";
-		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER)) this.object2.checkCode();
+		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[2])) {//*
+			this.object2.word = this.object2.word + this.handler.getKeyManager().str[1];
+		}
+		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[0])) {//*
+			this.object2.word = this.object2.word + this.handler.getKeyManager().str[2];
+		}
+		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[1])) {//*
+			this.object2.word = this.object2.word + this.handler.getKeyManager().str[0];
+		}
+		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[3])) {//*
+			this.object2.getValidation();
+		}
+		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER) && this.object2.mayEnterValidation) {//*
+			this.object2.checkCode();
+		}
 		
-		if(handler.getKeyManager().JJMPButton && this.object2.codeEnteredCorrectly) this.object2.onScreen = true;		
+		if(this.reset) {//*
+			time = System.currentTimeMillis();//*
+			this.reset = false;//*
+		}
+		
+		if(this.object2.validationEnteredCorrectly) {//*
+			
+			if(System.currentTimeMillis() - this.time >= 2000) {//*		
+				this.object2.setOnScreen(true);	
+				this.reset = true;
+			}
+			
+		}
 		
 		for (BaseArea area : SpawnedAreas) {
 			area.tick();

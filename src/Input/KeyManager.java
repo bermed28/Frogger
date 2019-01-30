@@ -16,7 +16,9 @@ public class KeyManager implements KeyListener {
 	public boolean attbut=false;
 	public boolean fattbut=false;
 	public boolean pbutt=false;
-	public boolean JJMPButton = false;
+	public String[] str = {"P", "J", "M"};//*
+	public boolean JJMPButton = false;//*
+	public int[] num = {KeyEvent.VK_M, KeyEvent.VK_P, KeyEvent.VK_J, KeyEvent.VK_F7};//*
 
 	public KeyManager(){
 
@@ -48,8 +50,6 @@ public class KeyManager implements KeyListener {
 		attbut = keys[KeyEvent.VK_E];
 		fattbut = keys[KeyEvent.VK_C];
 		pbutt = keys[KeyEvent.VK_ESCAPE];
-		//*
-		JJMPButton = keys[KeyEvent.VK_J];
 		
 	}
 

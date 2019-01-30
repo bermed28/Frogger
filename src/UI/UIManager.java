@@ -83,15 +83,15 @@ public class UIManager {
         }
     }
     
-    //*
+    //*********************************
     
     public class JJMP {
 
     	Handler handler;
     	Random random = new Random();
-    	Scanner scanner = new Scanner(System.in);
-    	public String code = "";
-    	public Boolean codeEnteredCorrectly = false;
+    	public String word = "";
+    	public Boolean validationEnteredCorrectly = false;
+    	public Boolean mayEnterValidation = false;
 
     	public boolean onScreen = false;
 
@@ -102,6 +102,7 @@ public class UIManager {
     	private int yPos;
     	private int width = 200;
     	private int height = 140;
+    	public String str = this.getValidation1();
 
     	public JJMP() {
 
@@ -177,20 +178,27 @@ public class UIManager {
     		
     	}
     	
+    	public void getValidation() {   	
+    		
+    		this.mayEnterValidation = true;
+    		System.out.println("Enter secret code.");
+    		
+    	}
+    	
     	public void checkCode() {
     		
-    		if(this.code.equals("JMP")) {
+    		if(this.word.equals(this.str)) {
 				
-				this.codeEnteredCorrectly = true;
+				this.validationEnteredCorrectly = true;
 				System.out.println("Code entered correctly. XD");
 			
 			}
     		
 			else{
 				
-				this.codeEnteredCorrectly = false;
-				System.out.println("Code incorrect. >w<");
-				this.code = "";
+				this.validationEnteredCorrectly = false;
+				System.out.println("Incorrect code. >.<");
+				this.word = "";
 			
 			}
     		
@@ -225,6 +233,10 @@ public class UIManager {
     	}
     	public void setHeight(int height) {
     		this.height = height;
+    	}
+    	
+    	public String getValidation1() {
+    		return "JMP";
     	}
 
     	public boolean isOnScreen() {
