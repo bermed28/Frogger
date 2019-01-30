@@ -38,7 +38,7 @@ public class WorldManager {
 	private Player player;									// How do we find the frog coordinates? How do we find the Collisions? This bad boy.
     
     UIManager object = new UIManager(handler);
-    UI.UIManager.JJMP object2 = object.new JJMP();
+    UI.UIManager.Object object2 = object.new Object();
 
 
 	private ID[][] grid;									

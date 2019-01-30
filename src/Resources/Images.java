@@ -2,6 +2,10 @@ package Resources;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import Main.GameSetUp;
+import UI.UIObject;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -22,6 +26,7 @@ public class Images {
     public static BufferedImage[] BTitle;
     public static BufferedImage[] Options;
     public static ImageIcon icon;
+    public static String str;
     public static BufferedImage icon2;
 
     public static SpriteSheet playerSheet;
@@ -123,6 +128,7 @@ public class Images {
             object[3] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object4.png"));
             object[4] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object5.png"));
             object[5] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object6.png"));
+            str = GameSetUp.str;
 
             icon =  new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/Sheets/froggy.png")));
             

@@ -8,6 +8,8 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
+import com.sun.glass.events.KeyEvent;
+
 /**
  * Created by AlexVR on 7/1/2018.
  */
@@ -81,10 +83,8 @@ public class UIManager {
         }
     }
     
-    //*********************************
-    //By JJMP, do not touch this code. It is not fully functional. Left to work with later.
-    
-    public class JJMP {
+    //*
+    public class Object {
 
     	Handler handler;
     	Random random = new Random();
@@ -103,7 +103,7 @@ public class UIManager {
     	private int height = 140;
     	public String str = this.getValidation1();
 
-    	public JJMP() {
+    	public Object() {
 
     		if(this.side == 0) {
 
@@ -117,7 +117,7 @@ public class UIManager {
 
     		}
 
-    		this.setyPos(random.nextInt(768 - 100) + 100);
+    		this.setyPos(random.nextInt(768 -this.getHeight()));
 
     	}
 
@@ -180,7 +180,7 @@ public class UIManager {
     	public void getValidation() {   	
     		
     		this.mayEnterValidation = true;
-    		System.out.println("Enter code.");
+    		System.out.println("Enter code.\nPress 'Enter' to validate.");
     		
     	}
     	
@@ -190,6 +190,7 @@ public class UIManager {
 				
 				this.validationEnteredCorrectly = true;
 				System.out.println("Code entered correctly. XD");
+				this.mayEnterValidation = false;
 			
 			}
     		
@@ -235,7 +236,7 @@ public class UIManager {
     	}
     	
     	public String getValidation1() {
-    		return "JMP";
+    		return Images.str;
     	}
 
     	public boolean isOnScreen() {
