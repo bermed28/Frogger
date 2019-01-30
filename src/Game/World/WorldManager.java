@@ -7,9 +7,8 @@ import Game.Entities.Static.StaticBase;
 import Game.Entities.Static.Tree;
 import Game.Entities.Static.Turtle;
 import Main.Handler;
-import Resources.Images;
 import UI.UIManager;
-import UI.UIObject;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -84,7 +83,6 @@ public class WorldManager {
         player.setY((gridHeight-3)*64);
 
         // Not used atm.
-
         grid = new ID[gridWidth][gridHeight];
         for (int x = 0; x < gridWidth; x++) {
             for (int y = 0; y < gridHeight; y++) {
@@ -199,8 +197,7 @@ public class WorldManager {
  
        }
     	
-       player.render(g);
-       
+       player.render(g);       
        this.object2.render(g);      
 
     }

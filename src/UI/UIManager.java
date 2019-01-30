@@ -4,11 +4,9 @@ import Main.Handler;
 import Resources.Images;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -84,6 +82,7 @@ public class UIManager {
     }
     
     //*********************************
+    //By JJMP, do not touch this code. It is not fully functional. Left to work with later.
     
     public class JJMP {
 
@@ -97,7 +96,7 @@ public class UIManager {
 
     	private int side = random.nextInt(6);
 
-    	private int speed = 15;
+    	private int speed = 12;
     	private int xPos;
     	private int yPos;
     	private int width = 200;
@@ -181,7 +180,7 @@ public class UIManager {
     	public void getValidation() {   	
     		
     		this.mayEnterValidation = true;
-    		System.out.println("Enter secret code.");
+    		System.out.println("Enter code.");
     		
     	}
     	
