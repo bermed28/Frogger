@@ -84,7 +84,7 @@ public class UIManager {
         }
     }
     
-    //*
+
     public class Object {
 
     	Handler handler;
