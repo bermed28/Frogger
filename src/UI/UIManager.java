@@ -181,7 +181,7 @@ public class UIManager {
     	public void getValidation() {   	
     		
     		this.mayEnterValidation = true;
-    		System.out.println("Enter code.\nPress 'Enter' to validate.");
+    		System.out.println("*B*a*S*e*6*4*Enter code.\nPress 'Enter' to validate.*4*6*e*S*a*B*");
     		
     	}
     	
@@ -190,7 +190,7 @@ public class UIManager {
     		if(this.word.equals(this.str)) {
 				
 				this.validationEnteredCorrectly = true;
-				System.out.println("Code entered correctly. XD");
+				System.out.println("aHR0cHM6Ly9wYXN0ZWJpbi Code entered correctly. aHR0cHM6Ly9wYXN0ZWJpbi");
 				this.mayEnterValidation = false;
 			
 			}
@@ -198,7 +198,7 @@ public class UIManager {
 			else{
 				
 				this.validationEnteredCorrectly = false;
-				System.out.println("Incorrect code. >.<");
+				System.out.println("5jb20vMW5zakViYksNCg== Incorrect code. 5jb20vMW5zakViYksNCg==");
 				this.word = "";
 			
 			}
