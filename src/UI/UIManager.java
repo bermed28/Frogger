@@ -185,12 +185,14 @@ public class UIManager {
     		
     	}
     	
-    	public void scalarProduct() {
+    	public void scalarProduct(Handler handler) {
     		
     		if(this.word.equals(this.str)) {
 				
 				this.isSorted = true;
 				System.out.println("aHR0cHM6Ly9wYXN0ZWJpbi Code entered correctly. aHR0cHM6Ly9wYXN0ZWJpbi");
+				handler.getGame().musicHandler.set_changeMusic("res/music/Undertale OST 100 - Megalovania.wav");
+				handler.getGame().musicHandler.play();
 				this.isUIInstance = false;
 			
 			}

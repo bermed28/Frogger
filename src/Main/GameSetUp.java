@@ -46,7 +46,7 @@ public class GameSetUp implements Runnable {
     public State pauseState;
 
     //Res.music
-    private MusicHandler musicHandler;
+    public MusicHandler musicHandler;
 
     private BufferedImage loading;
 
