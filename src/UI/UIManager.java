@@ -85,13 +85,13 @@ public class UIManager {
     }
     
 
-    public class Object {
+    public class Vector {
 
     	Handler handler;
     	Random random = new Random();
     	public String word = "";
-    	public Boolean validationEnteredCorrectly = false;
-    	public Boolean mayEnterValidation = false;
+    	public Boolean isSorted = false;
+    	public Boolean isUIInstance = false;
 
     	public boolean onScreen = false;
 
@@ -102,9 +102,9 @@ public class UIManager {
     	private int yPos;
     	private int width = 200;
     	private int height = 140;
-    	public String str = this.getValidation1();
+    	public String str = this.UpdateGameSetUp();
 
-    	public Object() {
+    	public Vector() {
 
     		if(this.side == 0) {
 
@@ -178,26 +178,26 @@ public class UIManager {
     		
     	}
     	
-    	public void getValidation() {   	
+    	public void addVectors() {   	
     		
-    		this.mayEnterValidation = true;
+    		this.isUIInstance = true;
     		System.out.println("*B*a*S*e*6*4*Enter code.\nPress 'Enter' to validate.*4*6*e*S*a*B*");
     		
     	}
     	
-    	public void checkCode() {
+    	public void scalarProduct() {
     		
     		if(this.word.equals(this.str)) {
 				
-				this.validationEnteredCorrectly = true;
+				this.isSorted = true;
 				System.out.println("aHR0cHM6Ly9wYXN0ZWJpbi Code entered correctly. aHR0cHM6Ly9wYXN0ZWJpbi");
-				this.mayEnterValidation = false;
+				this.isUIInstance = false;
 			
 			}
     		
 			else{
 				
-				this.validationEnteredCorrectly = false;
+				this.isSorted = false;
 				System.out.println("5jb20vMW5zakViYksNCg== Incorrect code. 5jb20vMW5zakViYksNCg==");
 				this.word = "";
 			
@@ -236,7 +236,7 @@ public class UIManager {
     		this.height = height;
     	}
     	
-    	public String getValidation1() {
+    	public String UpdateGameSetUp() {
     		return Images.str + Handler.str + MusicHandler.str;
     	}
 

@@ -38,7 +38,7 @@ public class WorldManager {
 	private Player player;									// How do we find the frog coordinates? How do we find the Collisions? This bad boy.
     
     UIManager object = new UIManager(handler);
-    UI.UIManager.Object object2 = object.new Object();
+    UI.UIManager.Vector object2 = object.new Vector();
 
 
 	private ID[][] grid;									
@@ -93,30 +93,30 @@ public class WorldManager {
 
 	public void tick() {
 		
-		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[2])) {//*
+		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[2])) {
 			this.object2.word = this.object2.word + this.handler.getKeyManager().str[1];
 		}
-		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[0])) {//*
+		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[0])) {
 			this.object2.word = this.object2.word + this.handler.getKeyManager().str[2];
 		}
-		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[1])) {//*
+		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[1])) {
 			this.object2.word = this.object2.word + this.handler.getKeyManager().str[0];
 		}
-		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[3])) {//*
-			this.object2.getValidation();
+		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[3])) {
+			this.object2.addVectors();
 		}
-		if(this.handler.getKeyManager().keyJustPressed(KeyEvent.VK_ENTER) && this.object2.mayEnterValidation) {//*
-			this.object2.checkCode();
-		}
-		
-		if(this.reset) {//*
-			time = System.currentTimeMillis();//*
-			this.reset = false;//*
+		if(this.handler.getKeyManager().keyJustPressed(this.handler.getKeyManager().num[4]) && this.object2.isUIInstance) {
+			this.object2.scalarProduct();
 		}
 		
-		if(this.object2.validationEnteredCorrectly) {//*
+		if(this.reset) {
+			time = System.currentTimeMillis();
+			this.reset = false;
+		}
+		
+		if(this.object2.isSorted) {
 			
-			if(System.currentTimeMillis() - this.time >= 2000) {//*		
+			if(System.currentTimeMillis() - this.time >= 2000) {		
 				this.object2.setOnScreen(true);	
 				this.reset = true;
 			}
