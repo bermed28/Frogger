@@ -3,6 +3,10 @@ package Input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import Game.Entities.EntityManager;
+import Resources.Animation;
+import UI.UIObject;
+
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -17,10 +21,9 @@ public class KeyManager implements KeyListener {
 	public boolean up=false, down=false, left=false, right=false;
 	public boolean attbut=false;
 	public boolean fattbut=false;
-	public boolean pbutt=false;
-	public String[] str = {"P", "J", "M"};//*
-	public boolean JJMPButton = false;//*
-	public int[] num = {KeyEvent.VK_M, KeyEvent.VK_P, KeyEvent.VK_J, KeyEvent.VK_F7};//*
+	public String[] str = {EntityManager.getLtr(), UIObject.getLtr() , Animation.getLtr()};
+	public boolean pbutt=false;	
+	public int[] num = {KeyEvent.VK_M, KeyEvent.VK_P, KeyEvent.VK_J, KeyEvent.VK_F7, KeyEvent.VK_ENTER};
 
 	public KeyManager(){
 
