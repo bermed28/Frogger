@@ -165,8 +165,20 @@ public class WorldManager {
 			SpawnedHazards.get(i).setY(SpawnedHazards.get(i).getY() + movementSpeed);
 
 			// Moves Log or Turtle to the right
-			if (SpawnedHazards.get(i) instanceof Log || SpawnedHazards.get(i) instanceof Turtle) {
+			if (SpawnedHazards.get(i) instanceof Log) {
 				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() + 1);
+
+				// Verifies the hazards Rectangles aren't null and
+				// If the player Rectangle intersects with the Log or Turtle Rectangle, then
+				// move player to the right.
+				if (SpawnedHazards.get(i).GetCollision() != null
+						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
+					player.setX(player.getX() + 1);
+				}
+
+			}
+			if (SpawnedHazards.get(i) instanceof Turtle) {
+				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() - 1);
 
 				// Verifies the hazards Rectangles aren't null and
 				// If the player Rectangle intersects with the Log or Turtle Rectangle, then
