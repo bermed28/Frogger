@@ -265,9 +265,9 @@ public class WorldManager {
 		Random rand = new Random();
 		int randInt;
 		int choice = rand.nextInt(7);
-		// Chooses between Log or Lillypad
+
 		if (choice <=5) {
-			randInt = 64 * rand.nextInt(4);
+			randInt = 64 * rand.nextInt(9);
 			SpawnedHazards.add(new Tree(handler, randInt, yPosition));
 		}
 
