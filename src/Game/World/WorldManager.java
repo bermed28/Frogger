@@ -57,7 +57,7 @@ public class WorldManager {
 
         StaticEntitiesAvailables.add(new LillyPad(handler, 0, 0));
         StaticEntitiesAvailables.add(new Log(handler, 0, 0));
-        StaticEntitiesAvailables.add(new Tree(handler));
+        StaticEntitiesAvailables.add(new Tree(handler, 0, 0));
         StaticEntitiesAvailables.add(new Turtle(handler, 0, 0));
 
         SpawnedAreas = new ArrayList<>();
@@ -225,6 +225,8 @@ public class WorldManager {
     	
     	if(randomArea instanceof GrassArea) {
     		randomArea = new GrassArea(handler, yPosition);
+    		grassHazard(yPosition);
+
     	}
     	else if(randomArea instanceof WaterArea) {
     		randomArea = new WaterArea(handler, yPosition);
@@ -257,6 +259,19 @@ public class WorldManager {
 			SpawnedHazards.add(new Turtle(handler, randInt, yPosition));
 		}
 			
+	}
+
+	private void grassHazard(int yPosition) {
+		Random rand = new Random();
+		int randInt;
+		int choice = rand.nextInt(7);
+		// Chooses between Log or Lillypad
+		if (choice <=5) {
+			randInt = 64 * rand.nextInt(4);
+			SpawnedHazards.add(new Tree(handler, randInt, yPosition));
+		}
+
+
 	}
     
 }

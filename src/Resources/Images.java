@@ -8,6 +8,7 @@ import UI.UIObject;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 /**
  * Created by AlexVR on 7/1/2018.
@@ -44,6 +45,7 @@ public class Images {
     public static BufferedImage lilly;
     public static BufferedImage log;
     public static BufferedImage grass;
+    public static BufferedImage Tree;
 
     public static BufferedImage[] object;
 
@@ -121,6 +123,7 @@ public class Images {
 
             lilly = playerSheet.crop(6,170,61,55);
             log = playerSheet.crop(387,259,184,57);
+            Tree =  ImageIO.read(getClass().getResourceAsStream("/Sheets/Tree.png"));
             
             object[0] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object1.png"));
             object[1] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object2.png"));
