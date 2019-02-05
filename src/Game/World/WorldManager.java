@@ -1,16 +1,11 @@
 package Game.World;
 
 import Game.Entities.Dynamic.Player;
-import Game.Entities.Static.LillyPad;
-import Game.Entities.Static.Log;
-import Game.Entities.Static.StaticBase;
-import Game.Entities.Static.Tree;
-import Game.Entities.Static.Turtle;
+import Game.Entities.Static.*;
 import Main.Handler;
 import UI.UIManager;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
