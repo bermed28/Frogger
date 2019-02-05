@@ -1,12 +1,11 @@
 package Game.Entities.Static;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.util.Random;
-
 import Main.Handler;
 import Resources.Animation;
 import Resources.Images;
+
+import java.awt.*;
+import java.util.Random;
 
 public class Tree extends StaticBase {
 	private Animation anim;
@@ -21,7 +20,7 @@ public class Tree extends StaticBase {
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Images.Tree, this.getX(), this.getY(), 80, 80, null);
+		g.drawImage(Images.Tree, this.getX(), this.getY(), 70, 70, null);
 		tree = new Rectangle(this.getX(), this.getY()+5, 80, 80);
 	}
 	
