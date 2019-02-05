@@ -255,7 +255,7 @@ public class WorldManager {
 			SpawnedHazards.add(new LillyPad(handler, randInt, yPosition));
 		}
 		else {
-			randInt = 64 * rand.nextInt(3);
+			randInt = 64 * rand.nextInt(10);
 			SpawnedHazards.add(new Turtle(handler, randInt, yPosition));
 		}
 			
@@ -264,10 +264,10 @@ public class WorldManager {
 	private void grassHazard(int yPosition) {
 		Random rand = new Random();
 		int randInt;
-		int choice = rand.nextInt(7);
+		int choice = rand.nextInt(8);
 
-		if (choice <=5) {
-			randInt = 64 * rand.nextInt(9);
+		if (choice <= 7) {
+			randInt = 64 * rand.nextInt(10);
 			SpawnedHazards.add(new Tree(handler, randInt, yPosition));
 		}
 
