@@ -230,7 +230,7 @@ public class WorldManager {
             grassHazard(yPosition);
 
         } else if (randomArea instanceof WaterArea) {
-            if(player.getX() == 0 ){
+            if(player.getX() == 0){
 				randomArea = new GrassArea(handler, yPosition);
 			} else {
             	randomArea = new WaterArea(handler, yPosition);
@@ -274,7 +274,6 @@ public class WorldManager {
 			randInt = 64 * rand.nextInt(10);
 			SpawnedHazards.add(new Tree(handler, randInt, yPosition));
 		}
-
 
 
 
