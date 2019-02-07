@@ -230,8 +230,13 @@ public class WorldManager {
             grassHazard(yPosition);
 
         } else if (randomArea instanceof WaterArea) {
-            randomArea = new WaterArea(handler, yPosition);
-            SpawnHazard(yPosition);
+            if(player.getX() == 0 ){
+				randomArea = new GrassArea(handler, yPosition);
+			} else {
+            	randomArea = new WaterArea(handler, yPosition);
+            	SpawnHazard(yPosition);
+			}
+
         } else {
             randomArea = new EmptyArea(handler, yPosition);
         }
