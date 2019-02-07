@@ -10,6 +10,7 @@ public class WaterArea extends BaseArea {
 
     private Animation anim;
 
+
     WaterArea(Handler handler, int yPosition) {
         super(handler, yPosition);
         // Instantiate the animation of this Water, and it starts it at a random frame.

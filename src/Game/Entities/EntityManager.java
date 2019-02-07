@@ -1,5 +1,6 @@
 package Game.Entities;
 
+import Game.Entities.Dynamic.Player;
 import Main.Handler;
 
 import java.awt.*;
@@ -8,12 +9,15 @@ import java.util.ArrayList;
 public class EntityManager {
 
     Handler handler;
+    private Player player;
 
     private ArrayList<EntityBase> entityList;
 
     public EntityManager(Handler handler) {
         this.handler = handler;
+
         entityList = new ArrayList<>();
+
     }
 
     public void tick(){

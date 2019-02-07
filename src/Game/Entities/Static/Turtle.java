@@ -22,6 +22,7 @@ public class Turtle extends StaticBase {
 		// Instantiate the animation of this Turtle, and starts it at a random frame.
 		anim = new Animation(200, Images.Turtle, rand.nextInt(20));
 	}
+
 	
 	@Override
 	public void tick() {
@@ -39,6 +40,8 @@ public class Turtle extends StaticBase {
 				g.drawImage(anim.getCurrentFrame(), this.getX(), this.getY(), 80*-1, 64, null);
 				turtle = new Rectangle();
 			}
+
+
 				
 	}
 	

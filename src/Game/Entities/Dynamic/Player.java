@@ -55,6 +55,7 @@ public class Player extends EntityBase {
     }
 
     private void move(){
+
         if(moveCoolDown< 25){
             moveCoolDown++;
         }

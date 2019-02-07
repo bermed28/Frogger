@@ -218,26 +218,23 @@ public class WorldManager {
      * It is also in charge of spawning hazards at a specific condition.
      */
 	private BaseArea randomArea(int yPosition) {
-    	Random rand = new Random();
-    	
-    	// From the AreasAvailable, get me any random one.
-    	BaseArea randomArea = AreasAvailables.get(rand.nextInt(AreasAvailables.size())); 
-    	
-    	if(randomArea instanceof GrassArea) {
-    		randomArea = new GrassArea(handler, yPosition);
-    		grassHazard(yPosition);
+        Random rand = new Random();
 
-    	}
-    	else if(randomArea instanceof WaterArea) {
-    		randomArea = new WaterArea(handler, yPosition);
-    		SpawnHazard(yPosition);
-    	}
-    	else {
-    		randomArea = new EmptyArea(handler, yPosition);
-    	}
-    	return randomArea;
+        // From the AreasAvailable, get me any random one.
+        BaseArea randomArea = AreasAvailables.get(rand.nextInt(AreasAvailables.size()));
+
+        if (randomArea instanceof GrassArea) {
+            randomArea = new GrassArea(handler, yPosition);
+            grassHazard(yPosition);
+
+        } else if (randomArea instanceof WaterArea) {
+            randomArea = new WaterArea(handler, yPosition);
+            SpawnHazard(yPosition);
+        } else {
+            randomArea = new EmptyArea(handler, yPosition);
+        }
+        return randomArea;
     }
-
 	/*
 	 * Given a yPositionm this method will add a new hazard to the SpawnedHazards ArrayList
 	 */
@@ -270,6 +267,8 @@ public class WorldManager {
 			randInt = 64 * rand.nextInt(10);
 			SpawnedHazards.add(new Tree(handler, randInt, yPosition));
 		}
+
+
 
 
 	}
