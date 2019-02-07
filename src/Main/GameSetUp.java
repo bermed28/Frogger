@@ -1,10 +1,7 @@
 package Main;
 
 import Display.DisplayScreen;
-import Game.GameStates.GameState;
-import Game.GameStates.MenuState;
-import Game.GameStates.PauseState;
-import Game.GameStates.State;
+import Game.GameStates.*;
 import Input.KeyManager;
 import Input.MouseManager;
 import Resources.Images;
@@ -81,7 +78,7 @@ public class GameSetUp implements Runnable {
 
         State.setState(menuState);
 
-        musicHandler.set_changeMusic("res/music/Undertale OST 100 - Megalovania.wav");
+        musicHandler.set_changeMusic("res/music/Undertale - Megalovania Remix.mp3");
         musicHandler.play();
         musicHandler.setLoop(true);
         musicHandler.setVolume(0.25);
@@ -89,6 +86,7 @@ public class GameSetUp implements Runnable {
 
     public void reStart(){
         gameState = new GameState(handler);
+
     }
 
     public synchronized void start(){

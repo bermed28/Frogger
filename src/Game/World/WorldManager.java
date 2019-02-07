@@ -175,6 +175,8 @@ public class WorldManager {
 					player.setX(player.getX() + 1);
 				}
 
+
+
 			}
 			if (SpawnedHazards.get(i) instanceof Turtle) {
 				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() - 1);

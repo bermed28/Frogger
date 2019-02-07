@@ -78,6 +78,7 @@ public class Player extends EntityBase {
             if(facing.equals("LEFT")) {
                 setY(getY() + 64);
             }
+
             if(facing.equals("RIGHT")) {
                 setX(getX()-64);
                 setY(getY()+64);
@@ -149,6 +150,9 @@ public class Player extends EntityBase {
                 break;
 
             case "LEFT":
+                if(this.getX() < -5) {
+                    break;
+                }
                 setX(getX() - (8));
                 break;
 
@@ -162,6 +166,9 @@ public class Player extends EntityBase {
                 break;
 
             case "RIGHT":
+                if(this.getX() > 576) {
+                    break;
+                }
                 setX(getX() + (8));
                 break;
 
