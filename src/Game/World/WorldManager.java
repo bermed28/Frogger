@@ -1,11 +1,7 @@
 package Game.World;
 
 import Game.Entities.Dynamic.Player;
-import Game.Entities.Static.LillyPad;
-import Game.Entities.Static.Log;
-import Game.Entities.Static.StaticBase;
-import Game.Entities.Static.Tree;
-import Game.Entities.Static.Turtle;
+import Game.Entities.Static.*;
 import Main.Handler;
 import UI.UIManager;
 
@@ -251,7 +247,7 @@ public class WorldManager {
             grassHazard(yPosition);
 
         } else if (randomArea instanceof WaterArea) {
-            if(player.getX() == 0 ){
+            if(player.getX() == 0){
 				randomArea = new GrassArea(handler, yPosition);
 			} else {
             	randomArea = new WaterArea(handler, yPosition);
@@ -276,7 +272,7 @@ public class WorldManager {
 			SpawnedHazards.add(new Log(handler, randInt, yPosition));
 		}
 		else if (choice >=5){
-			randInt = 64 * rand.nextInt(9);
+			randInt = 64 * rand.nextInt(4);
 			SpawnedHazards.add(new LillyPad(handler, randInt, yPosition));
 		}
 		else {
@@ -296,6 +292,10 @@ public class WorldManager {
 			SpawnedHazards.add(new Tree(handler, randInt, yPosition));
 		}
 
+		if(choice <= 5) {
+            randInt = 64 * rand.nextInt(5);
+            SpawnedHazards.add(new Stone(handler, randInt, yPosition));
+        }
 
 
 
