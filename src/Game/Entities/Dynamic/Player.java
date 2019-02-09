@@ -142,7 +142,8 @@ public class Player extends EntityBase {
         switch (facing) {
             case "UP":
                 if(this.getY() < 70) {
-                    break;
+                    this.setX(256);
+                    this.setY(756);
                 }
                 if (this.getX() % 64 >= 64 / 2) {
                     this.setX(this.getX() + (64 - this.getX() % 64));
