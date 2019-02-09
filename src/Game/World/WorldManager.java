@@ -159,9 +159,9 @@ public class WorldManager {
     }
 
 	private void HazardMovement() {
-		int positionYLast = player.getY();
-		int positionXLast = player.getX();
-		
+//		int positionYLast = player.getY();
+//		int positionXLast = player.getX();
+
 		for (int i = 0; i < SpawnedHazards.size(); i++) {
 
 
@@ -182,21 +182,6 @@ public class WorldManager {
 				}
 
 			}
-			if (SpawnedHazards.get(i) instanceof Tree) {
-				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX());
-
-				// Verifies the hazards Rectangles aren't null and
-				// If the player Rectangle intersects with the Tree, then
-				// move player his original position but it's not working yet.
-				if (SpawnedHazards.get(i).GetCollision() != null
-						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
-					player.setX(positionXLast - 10);
-					player.setY(positionYLast - 10);
-				}
-
-
-
-			}
 			if (SpawnedHazards.get(i) instanceof Turtle) {
 				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() - 1);
 
@@ -205,13 +190,29 @@ public class WorldManager {
 				// move player to the right.
 				if (SpawnedHazards.get(i).GetCollision() != null
 						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
-					player.setX(player.getX() + 1);
+					player.setX(player.getX() - 1);
 				}
 
 			}
+			if (SpawnedHazards.get(i) instanceof Tree) {
+                SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX());
+
+                // Verifies the hazards Rectangles aren't null and
+                // If the player Rectangle intersects with the Tree, then
+                // move player his original position but it's not working yet.
+                if (SpawnedHazards.get(i).GetCollision() != null
+                        && player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
+                    player.setX(player.getX()+ 10);
+                    player.setY(player.getY()+ 10);
+                }
 
 
-			// if hazard has passed the screen height, then remove this hazard.
+
+            }
+
+
+
+            // if hazard has passed the screen height, then remove this hazard.
 			if (SpawnedHazards.get(i).getY() > handler.getHeight()) {
 				SpawnedHazards.remove(i);
 			}
