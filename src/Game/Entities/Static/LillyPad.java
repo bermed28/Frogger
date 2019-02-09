@@ -3,6 +3,7 @@ package Game.Entities.Static;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import Game.World.WaterArea;
 import Main.Handler;
 import Resources.Images;
 
@@ -20,7 +21,6 @@ public class LillyPad extends StaticBase {
     
     @Override
     public void render(Graphics g) {
-    	
     	g.drawImage(Images.lilly, this.getX(), this.getY(), 64, 64, null);
     	lillypad = new Rectangle(this.getX(), this.getY()+5, 64, 55);
 

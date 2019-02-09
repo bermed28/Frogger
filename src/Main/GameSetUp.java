@@ -1,6 +1,10 @@
 package Main;
 
 import Display.DisplayScreen;
+import Game.GameStates.GameState;
+import Game.GameStates.MenuState;
+import Game.GameStates.PauseState;
+import Game.GameStates.State;
 import Game.GameStates.*;
 import Input.KeyManager;
 import Input.MouseManager;

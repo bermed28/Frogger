@@ -1,6 +1,11 @@
 package Game.World;
 
 import Game.Entities.Dynamic.Player;
+import Game.Entities.Static.LillyPad;
+import Game.Entities.Static.Log;
+import Game.Entities.Static.StaticBase;
+import Game.Entities.Static.Tree;
+import Game.Entities.Static.Turtle;
 import Game.Entities.Static.*;
 import Main.Handler;
 import UI.UIManager;
@@ -54,6 +59,7 @@ public class WorldManager {
         StaticEntitiesAvailables.add(new LillyPad(handler, 0, 0));
         StaticEntitiesAvailables.add(new Log(handler, 0, 0));
         StaticEntitiesAvailables.add(new Tree(handler, 0, 0));
+		StaticEntitiesAvailables.add(new Stone(handler, 0, 0));
         StaticEntitiesAvailables.add(new Turtle(handler, 0, 0));
 
         SpawnedAreas = new ArrayList<>();
@@ -270,7 +276,7 @@ public class WorldManager {
 			SpawnedHazards.add(new Log(handler, randInt, yPosition));
 		}
 		else if (choice >=5){
-			randInt = 64 * rand.nextInt(4);
+			randInt = 64 * rand.nextInt(7);
 			SpawnedHazards.add(new LillyPad(handler, randInt, yPosition));
 		}
 		else {
