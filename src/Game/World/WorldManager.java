@@ -159,8 +159,8 @@ public class WorldManager {
     }
 
 	private void HazardMovement() {
-//		int positionYLast = player.getY();
-//		int positionXLast = player.getX();
+		int positionYLast = player.getY();
+		int positionXLast = player.getX();
 
 		for (int i = 0; i < SpawnedHazards.size(); i++) {
 
@@ -204,11 +204,27 @@ public class WorldManager {
                         && player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
                     player.setX(player.getX()+ 10);
                     player.setY(player.getY()+ 10);
+
+
                 }
+			}
+
+			if (SpawnedHazards.get(i) instanceof Stone) {
+				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX());
+
+				// Verifies the hazards Rectangles aren't null and
+				// If the player Rectangle intersects with the Tree, then
+				// move player his original position but it's not working yet.
+				if (SpawnedHazards.get(i).GetCollision() != null
+						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
+					player.setX(player.getX() + 10);
+					player.setY(player.getY() + 10);
+
+				}
 
 
 
-            }
+			}
 
 
 
