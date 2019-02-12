@@ -62,7 +62,7 @@ public class Images {
         Turtle = new BufferedImage[20];
         Water = new BufferedImage[3];
         object = new BufferedImage[6];
-        Restart = new BufferedImage[1];
+        Restart = new BufferedImage[2];
 
         try {
             playerSheet = new SpriteSheet(ImageIO.read(getClass().getResourceAsStream("/Sheets/gameSprites.png")));
@@ -80,6 +80,7 @@ public class Images {
             butstart[1]= ImageIO.read(getClass().getResourceAsStream("/Buttons/Startbutton2.png"));//hoverbut
             butstart[2]= ImageIO.read(getClass().getResourceAsStream("/Buttons/StartButton3.png"));//clickbut
             Restart[0] = ImageIO.read(getClass().getResourceAsStream("/Buttons/RestarButton.png"));
+            Restart[1] = ImageIO.read(getClass().getResourceAsStream("/Buttons/RestartButton.png"));
             
             Player[0]= playerSheet.crop(0,30,52,39);
             Player[1]= playerSheet.crop(53,25,59,46);
