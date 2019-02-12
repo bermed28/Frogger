@@ -23,13 +23,14 @@ public class DeathState extends State {
         /*
          * Adds a button that by being pressed changes the State
          */
-        uiManager.addObjects(new UIImageButton(33, handler.getGame().getHeight() - 150, 128, 64, Images.Resume, () -> {
+        //restart button
+        uiManager.addObjects(new UIImageButton(33, handler.getGame().getHeight() - 150, 128, 64, Images.Restart, () -> {
             handler.getMouseManager().setUimanager(null);
             handler.getGame().reStart();
             State.setState(handler.getGame().gameState);
         }));
 
-
+        // title menu button
         uiManager.addObjects(new UIImageButton(33 + 192 * 2,  handler.getGame().getHeight() - 150, 128, 64, Images.BTitle, () -> {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().menuState);
