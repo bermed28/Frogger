@@ -236,7 +236,7 @@ public class WorldManager {
 			}
 
 			if (player.getY() > handler.getHeight()) {
-				State.setState(handler.getGame().DeathState);
+				State.setState(handler.getGame().deathState);
 			}
 		}
 	}
