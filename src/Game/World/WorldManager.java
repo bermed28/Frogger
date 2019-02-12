@@ -7,6 +7,7 @@ import Game.Entities.Static.StaticBase;
 import Game.Entities.Static.Tree;
 import Game.Entities.Static.Turtle;
 import Game.Entities.Static.*;
+import Game.GameStates.State;
 import Main.Handler;
 import UI.UIManager;
 
@@ -231,6 +232,10 @@ public class WorldManager {
             // if hazard has passed the screen height, then remove this hazard.
 			if (SpawnedHazards.get(i).getY() > handler.getHeight()) {
 				SpawnedHazards.remove(i);
+			}
+
+			if (player.getY() > handler.getHeight()) {
+				State.setState(handler.getGame().menuState);
 			}
 		}
 	}
