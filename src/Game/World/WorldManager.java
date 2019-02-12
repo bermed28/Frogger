@@ -159,8 +159,8 @@ public class WorldManager {
     }
 
 	private void HazardMovement() {
-		int positionYLast = player.getY();
-		int positionXLast = player.getX();
+		//int positionYLast = player.getY();
+		//int positionXLast = player.getX();
 
 		for (int i = 0; i < SpawnedHazards.size(); i++) {
 

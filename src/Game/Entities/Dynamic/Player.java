@@ -1,6 +1,7 @@
 package Game.Entities.Dynamic;
 
 import Game.Entities.EntityBase;
+import Game.GameStates.State;
 import Main.Handler;
 import Resources.Images;
 
@@ -160,6 +161,9 @@ public class Player extends EntityBase {
                 break;
 
             case "DOWN":
+                if(this.getY() > 768) {
+                    State.setState(handler.getGame().menuState);
+                }
                 if (this.getX() % 64 >= 64 / 2) {
                     this.setX(this.getX() + (64 - this.getX() % 64));
                 } else {
