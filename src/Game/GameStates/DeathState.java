@@ -4,6 +4,7 @@ import Main.Handler;
 import Resources.Images;
 import UI.UIImageButton;
 import UI.UIManager;
+import Resources.MusicHandler;
 
 import java.awt.*;
 
@@ -14,11 +15,13 @@ public class DeathState extends State {
 
     private int count = 0;
     private UIManager uiManager;
+    private MusicHandler musicHandler;
 
     public DeathState(Handler handler) {
         super(handler);
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUimanager(uiManager);
+        musicHandler = new MusicHandler();
 
         /*
          * Adds a button that by being pressed changes the State
@@ -35,6 +38,12 @@ public class DeathState extends State {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().menuState);
         }));
+//        musicHandler.pause();
+//        musicHandler.set_changeMusic("res/music/UTheme.mp3");
+//        musicHandler.play();
+//        musicHandler.setLoop(true);
+//        musicHandler.setVolume(0.25);
+
 
 
 

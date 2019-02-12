@@ -175,7 +175,6 @@ public class WorldManager {
 				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() - 1);
 				if(SpawnedHazards.get(i).getX() < -128){
 					SpawnedHazards.get(i).setX(576);
-					player.setX(576);
 				}
 				// Verifies the hazards Rectangles aren't null and
 				// If the player Rectangle intersects with the Log or Turtle Rectangle, then
@@ -183,9 +182,10 @@ public class WorldManager {
 				if (SpawnedHazards.get(i).GetCollision() != null
 						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
 					player.setX(player.getX() - 1);
-//					if(SpawnedHazards.get(i).getX() < -128) {
-//						player.setX(576);
-//					}
+					if(player.getX()< 0){
+						player.setX(0);
+					}
+
 				}
 
 			}
@@ -193,7 +193,6 @@ public class WorldManager {
 				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() + 1);
 				if(SpawnedHazards.get(i).getX() >576) {
 					SpawnedHazards.get(i).setX(-128);
-					player.setX(-128);
 				}
 
 				// Verifies the hazards Rectangles aren't null and
@@ -202,9 +201,7 @@ public class WorldManager {
 				if (SpawnedHazards.get(i).GetCollision() != null
 						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
 					player.setX(player.getX() + 1);
-//					if(SpawnedHazards.get(i).getX() >576) {
-//						player.setX(-128);
-//					}
+
 				}
 
 			}
