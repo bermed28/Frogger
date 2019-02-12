@@ -59,7 +59,7 @@ public class DeathState extends State {
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Images.Pause,0,0,handler.getGame().getWidth(),handler.getGame().getHeight(),null);
+        g.drawImage(Images.GameOver,0,0,handler.getGame().getWidth(),handler.getGame().getHeight(),null);
         uiManager.Render(g);
 
     }
