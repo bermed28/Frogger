@@ -229,13 +229,14 @@ public class WorldManager {
 
 
 
+
             // if hazard has passed the screen height, then remove this hazard.
 			if (SpawnedHazards.get(i).getY() > handler.getHeight()) {
 				SpawnedHazards.remove(i);
 			}
 
 			if (player.getY() > handler.getHeight()) {
-				State.setState(handler.getGame().menuState);
+				State.setState(handler.getGame().DeathState);
 			}
 		}
 	}
