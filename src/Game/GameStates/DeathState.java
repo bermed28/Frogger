@@ -25,6 +25,7 @@ public class DeathState extends State {
          */
         uiManager.addObjects(new UIImageButton(33, handler.getGame().getHeight() - 150, 128, 64, Images.Resume, () -> {
             handler.getMouseManager().setUimanager(null);
+            handler.getGame().reStart();
             State.setState(handler.getGame().gameState);
         }));
 
