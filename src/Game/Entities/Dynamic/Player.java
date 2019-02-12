@@ -162,7 +162,7 @@ public class Player extends EntityBase {
 
             case "DOWN":
                 if(this.getY() > 768) {
-                    State.setState(handler.getGame().menuState);
+                    State.setState(handler.getGame().deathState);
                 }
                 if (this.getX() % 64 >= 64 / 2) {
                     this.setX(this.getX() + (64 - this.getX() % 64));
