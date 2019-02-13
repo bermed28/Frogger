@@ -295,7 +295,7 @@ public class WorldManager {
 
         } else if (randomArea instanceof WaterArea) {
             if(player.getX() == 0){
-				randomArea = new GrassArea(handler, yPosition);
+				randomArea = new EmptyArea(handler, yPosition);
 			} else {
             	randomArea = new WaterArea(handler, yPosition);
             	//Used to not spawn two lily pad in consecutive Y positions
