@@ -45,7 +45,7 @@ public class WorldManager {
 	private ID[][] grid;									
 	private int gridWidth,gridHeight;						// Size of the grid. 
 	private int movementSpeed;								// Movement of the tiles going downwards.
-    
+    private int i;
 
     public WorldManager(Handler handler) {
         this.handler = handler;
@@ -237,9 +237,6 @@ public class WorldManager {
 
 			}
 
-
-
-
             // if hazard has passed the screen height, then remove this hazard.
 			if (SpawnedHazards.get(i).getY() > handler.getHeight()) {
 				SpawnedHazards.remove(i);
@@ -288,7 +285,13 @@ public class WorldManager {
 				randomArea = new GrassArea(handler, yPosition);
 			} else {
             	randomArea = new WaterArea(handler, yPosition);
-            	SpawnHazard(yPosition);
+            	//Used to not spawn two lily pad in consecutive Y positions
+				//i used to check if a lilypad spawned before
+            	if(i == 1){
+            		TurtleLogHazard(yPosition);
+				}else {
+					SpawnHazard(yPosition);
+				}
 			}
 
         } else {
@@ -300,6 +303,7 @@ public class WorldManager {
 	 * Given a yPositionm this method will add a new hazard to the SpawnedHazards ArrayList
 	 */
 	private void SpawnHazard(int yPosition) {
+		i = 0;
 		Random rand = new Random();
 		int randInt;
 		int choice = rand.nextInt(10);
@@ -312,12 +316,30 @@ public class WorldManager {
 		else if (choice <=5){
 			randInt = 64 * rand.nextInt(7);
 			SpawnedHazards.add(new LillyPad(handler, randInt, yPosition));
+			i = 1;
 		}
 		else {
 			randInt = 64 * rand.nextInt(10);
 			SpawnedHazards.add(new Log(handler, randInt, yPosition));
 		}
 			
+	}
+	private void TurtleLogHazard(int yPosition) {
+		Random rand = new Random();
+		int randInt;
+		int choice = rand.nextInt(10);
+		i = 0;
+		// Chooses between Log or Lillypad
+		if (choice <=2) {
+			randInt = 64 * rand.nextInt(4);
+			SpawnedHazards.add(new Turtle(handler, randInt, yPosition));
+
+		}
+		else {
+			randInt = 64 * rand.nextInt(10);
+			SpawnedHazards.add(new Log(handler, randInt, yPosition));
+		}
+
 	}
 
 	private void grassHazard(int yPosition) {

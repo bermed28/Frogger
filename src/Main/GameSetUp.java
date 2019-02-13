@@ -88,7 +88,7 @@ public class GameSetUp implements Runnable {
         musicHandler.set_changeMusic("res/music/Super Mario Game Over.mp3");
         musicHandler.play();
         musicHandler.setLoop(true);
-        musicHandler.setVolume(0.25);
+        musicHandler.setVolume(0.50);
     }
 
     public void reStart(){
