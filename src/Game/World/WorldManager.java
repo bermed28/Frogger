@@ -313,16 +313,20 @@ public class WorldManager {
 			SpawnedHazards.add(new Turtle(handler, randInt, yPosition));
 
 		}
-		else if (choice <=5){
-			randInt = 64 * rand.nextInt(7);
-			SpawnedHazards.add(new LillyPad(handler, randInt, yPosition));
-			i = 1;
-		}
+		else if (choice <=5) {
+		    i = 1;
+            randInt = 64 * rand.nextInt(9);
+            SpawnedHazards.add(new LillyPad(handler, randInt, yPosition));
+            for (int X = 0; X < 7; X++) {
+                SpawnedHazards.add(new LillyPad(handler, randInt, yPosition));
+                randInt = 64 * rand.nextInt(9);
+            }
+        }
 		else {
 			randInt = 64 * rand.nextInt(10);
 			SpawnedHazards.add(new Log(handler, randInt, yPosition));
 		}
-			
+
 	}
 	private void TurtleLogHazard(int yPosition) {
 		Random rand = new Random();
