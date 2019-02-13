@@ -237,9 +237,6 @@ public class WorldManager {
 
 			}
 
-
-
-
             // if hazard has passed the screen height, then remove this hazard.
 			if (SpawnedHazards.get(i).getY() > handler.getHeight()) {
 				SpawnedHazards.remove(i);
@@ -274,6 +271,7 @@ public class WorldManager {
      * It is also in charge of spawning hazards at a specific condition.
      */
 	private BaseArea randomArea(int yPosition) {
+		int i = 0;
         Random rand = new Random();
 
         // From the AreasAvailable, get me any random one.
@@ -288,7 +286,13 @@ public class WorldManager {
 				randomArea = new GrassArea(handler, yPosition);
 			} else {
             	randomArea = new WaterArea(handler, yPosition);
-            	SpawnHazard(yPosition);
+            	//Used to not spawn two lily pad in consecutive Y positions
+				//i used to check if a lilypad spawned before
+            	if(i == 1){
+            		TurtleLogHazard(yPosition,i);
+				}else {
+					SpawnHazard(yPosition,i);
+				}
 			}
 
         } else {
@@ -299,7 +303,8 @@ public class WorldManager {
 	/*
 	 * Given a yPositionm this method will add a new hazard to the SpawnedHazards ArrayList
 	 */
-	private void SpawnHazard(int yPosition) {
+	private void SpawnHazard(int yPosition, int i) {
+		i = 0;
 		Random rand = new Random();
 		int randInt;
 		int choice = rand.nextInt(10);
@@ -312,12 +317,30 @@ public class WorldManager {
 		else if (choice <=5){
 			randInt = 64 * rand.nextInt(7);
 			SpawnedHazards.add(new LillyPad(handler, randInt, yPosition));
+			i = 1;
 		}
 		else {
 			randInt = 64 * rand.nextInt(10);
 			SpawnedHazards.add(new Log(handler, randInt, yPosition));
 		}
 			
+	}
+	private void TurtleLogHazard(int yPosition,int i) {
+		Random rand = new Random();
+		int randInt;
+		int choice = rand.nextInt(10);
+		i = 0;
+		// Chooses between Log or Lillypad
+		if (choice <=2) {
+			randInt = 64 * rand.nextInt(4);
+			SpawnedHazards.add(new Turtle(handler, randInt, yPosition));
+
+		}
+		else {
+			randInt = 64 * rand.nextInt(10);
+			SpawnedHazards.add(new Log(handler, randInt, yPosition));
+		}
+
 	}
 
 	private void grassHazard(int yPosition) {
