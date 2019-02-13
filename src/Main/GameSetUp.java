@@ -85,7 +85,7 @@ public class GameSetUp implements Runnable {
 
         State.setState(menuState);
 
-        musicHandler.set_changeMusic("res/music/Super Mario Game Over.mp3");
+        musicHandler.set_changeMusic("res/music/Noisestorm - Crab Rave.mp3");
         musicHandler.play();
         musicHandler.setLoop(true);
         musicHandler.setVolume(0.50);

@@ -352,13 +352,18 @@ public class WorldManager {
 		int choice = rand.nextInt(8);
 
 		if (choice <= 7) {
-			randInt = 64 * rand.nextInt(10);
-			SpawnedHazards.add(new Tree(handler, randInt, yPosition));
+			randInt = 64 * rand.nextInt(8);
+			for (int X = 0; X < 5; X++) {
+				SpawnedHazards.add(new Tree(handler, randInt, yPosition));
+				randInt = 64 * rand.nextInt(8);
+			}
+
 		}
 
 		if(choice <= 5) {
-            randInt = 64 * rand.nextInt(5);
+            randInt = 64 * rand.nextInt(2);
             SpawnedHazards.add(new Stone(handler, randInt, yPosition));
+
         }
 
 
