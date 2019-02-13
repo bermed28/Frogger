@@ -213,9 +213,15 @@ public class WorldManager {
                 // move player his original position but it's not working yet.
                 if (SpawnedHazards.get(i).GetCollision() != null
                         && player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
-                    player.setX(player.getX()+ 10);
-                    player.setY(player.getY()+ 10);
-
+                	if(player.facing.equals("UP")) {
+						player.setY(player.getY() + 8);
+					}if(player.facing.equals("DOWN")) {
+						player.setY(player.getY() -8);
+					}if(player.facing.equals("LEFT")) {
+						player.setX(player.getX() + 8);
+					}if(player.facing.equals("RIGHT")) {
+						player.setX(player.getX() - 8);
+					}
 
                 }
 			}
@@ -228,8 +234,15 @@ public class WorldManager {
 				// move player his original position but it's not working yet.
 				if (SpawnedHazards.get(i).GetCollision() != null
 						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
-					player.setX(player.getX() + 10);
-					player.setY(player.getY() + 10);
+					if(player.facing.equals("UP")) {
+						player.setY(player.getY() + 8);
+					}if(player.facing.equals("DOWN")) {
+						player.setY(player.getY() -8);
+					}if(player.facing.equals("LEFT")) {
+						player.setX(player.getX() + 8);
+					}if(player.facing.equals("RIGHT")) {
+						player.setX(player.getX() - 8);
+					}
 
 				}
 
