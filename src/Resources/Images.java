@@ -41,6 +41,7 @@ public class Images {
     public static BufferedImage player;
     
     public static BufferedImage grassArea;
+    public static BufferedImage roadArea;
     public static BufferedImage waterArea;
     public static BufferedImage emptyArea;
     public static BufferedImage lilly;
@@ -149,6 +150,7 @@ public class Images {
             grassArea = ImageIO.read(getClass().getResourceAsStream("/Sheets/grassArea.png"));
             waterArea = ImageIO.read(getClass().getResourceAsStream("/Sheets/waterArea.png"));
             emptyArea = ImageIO.read(getClass().getResourceAsStream("/Sheets/sand.jpg"));
+            roadArea =  ImageIO.read(getClass().getResourceAsStream("/Sheets/Road.jpg"));
 
             
         }catch (IOException e) {

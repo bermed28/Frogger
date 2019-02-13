@@ -56,6 +56,7 @@ public class WorldManager {
         AreasAvailables.add(new GrassArea(handler, 0));		
         AreasAvailables.add(new WaterArea(handler, 0));
         AreasAvailables.add(new EmptyArea(handler, 0));
+		AreasAvailables.add(new RoadArea(handler, 0));
 
         StaticEntitiesAvailables.add(new LillyPad(handler, 0, 0));
         StaticEntitiesAvailables.add(new Log(handler, 0, 0));
@@ -307,7 +308,10 @@ public class WorldManager {
 				}
 			}
 
-        } else {
+        } else if (randomArea instanceof RoadArea) {
+			randomArea = new RoadArea(handler, yPosition);
+
+		} else {
             randomArea = new EmptyArea(handler, yPosition);
         }
         return randomArea;
