@@ -12,6 +12,7 @@ import Main.Handler;
 import UI.UIManager;
 
 import java.awt.*;
+import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -288,13 +289,19 @@ public class WorldManager {
         BaseArea randomArea = AreasAvailables.get(rand.nextInt(AreasAvailables.size()));
 
         if (randomArea instanceof GrassArea) {
-            randomArea = new GrassArea(handler, yPosition);
-            grassHazard(yPosition);
+			if(player.getX() == 0){
+				randomArea = new EmptyArea(handler, yPosition);
+			} else {
+				randomArea = new GrassArea(handler, yPosition);
+				grassHazard(yPosition);
+			}
+
 
         } else if (randomArea instanceof WaterArea) {
             if(player.getX() == 0){
 				randomArea = new EmptyArea(handler, yPosition);
 			} else {
+
             	randomArea = new WaterArea(handler, yPosition);
             	//Used to not spawn two lily pad in consecutive Y positions
 				//i used to check if a lilypad spawned before
