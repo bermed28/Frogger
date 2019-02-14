@@ -181,11 +181,8 @@ public class WorldManager {
 				// If the player Rectangle intersects with the Log or Turtle Rectangle, then
 				// move player to the right.
 				if (SpawnedHazards.get(i).GetCollision() != null
-						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
+						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())&&player.getX()-64>0) {
 					player.setX(player.getX() - 2);
-					if(player.getX()< 0){
-						player.setX(0);
-					}
 
 				}
 
@@ -200,7 +197,7 @@ public class WorldManager {
 				// If the player Rectangle intersects with the Log or Turtle Rectangle, then
 				// move player to the right.
 				if (SpawnedHazards.get(i).GetCollision() != null
-						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
+						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())&& player.getX()+64<576) {
 					player.setX(player.getX() + 2);
 
 				}

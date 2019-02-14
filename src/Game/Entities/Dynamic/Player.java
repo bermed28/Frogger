@@ -40,6 +40,15 @@ public class Player extends EntityBase {
         if(!moving){
             move();
         }
+        if(this.getY() > 768) {
+            State.setState(handler.getGame().deathState);
+        }
+//        if(player.getX()<0){
+//            this.setX(64);
+//        }
+//        if(player.getX() > 512){
+//            this.setX(512);
+//        }
 
     }
 
@@ -63,7 +72,7 @@ public class Player extends EntityBase {
         index=0;
 
         /////////////////MOVE UP///////////////
-        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && facing.equals("UP")){
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && facing.equals("UP")&& this.getY()-128>0){
             moving=true;
         }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && !facing.equals("UP")){
             if(facing.equals("DOWN")) {
@@ -88,7 +97,7 @@ public class Player extends EntityBase {
         }
 
         /////////////////MOVE LEFT///////////////
-        else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_A) && !moving && facing.equals("LEFT")){
+        else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_A) && !moving && facing.equals("LEFT")&& this.getX()>0){
             moving=true;
         }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_A) && !moving&& !facing.equals("LEFT")){
             if(facing.equals("RIGHT")) {
@@ -110,7 +119,7 @@ public class Player extends EntityBase {
         }
 
         /////////////////MOVE RIGHT///////////////
-        else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_D) && !moving && facing.equals("RIGHT")){
+        else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_D) && !moving && facing.equals("RIGHT")&& this.getX()<handler.getWidth()){
             moving=true;
         }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_D) && !moving&& !facing.equals("RIGHT")){
             if(facing.equals("LEFT")) {
@@ -142,9 +151,9 @@ public class Player extends EntityBase {
         index++;
         switch (facing) {
             case "UP":
-                if(this.getY() < 70) {
-                    break;
-                }
+//                if(this.getY() < 70) {
+//                    break;
+//                }
                 if (this.getX() % 64 >= 64 / 2) {
                     this.setX(this.getX() + (64 - this.getX() % 64));
                 } else {
@@ -154,16 +163,13 @@ public class Player extends EntityBase {
                 break;
 
             case "LEFT":
-                if(this.getX() < -5) {
-                    break;
-                }
+//                if(this.getX() < -5) {
+//                    break;
+//                }
                 setX(getX() - (8));
                 break;
 
             case "DOWN":
-                if(this.getY() > 768) {
-                    State.setState(handler.getGame().deathState);
-                }
                 if (this.getX() % 64 >= 64 / 2) {
                     this.setX(this.getX() + (64 - this.getX() % 64));
                 } else {
@@ -173,9 +179,9 @@ public class Player extends EntityBase {
                 break;
 
             case "RIGHT":
-                if(this.getX() > 576) {
-                    break;
-                }
+//                if(this.getX() > 576) {
+//                    break;
+//                }
                 setX(getX() + (8));
                 break;
 
