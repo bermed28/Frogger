@@ -43,12 +43,12 @@ public class Player extends EntityBase {
         if(this.getY() > 768) {
             State.setState(handler.getGame().deathState);
         }
-//        if(player.getX()<0){
-//            this.setX(64);
-//        }
-//        if(player.getX() > 512){
-//            this.setX(512);
-//        }
+        if((player.getX()<0)){
+            this.setX(64);
+        }
+        if(player.getX() > 512){
+            this.setX(512);
+        }
 
     }
 

@@ -174,21 +174,6 @@ public class WorldManager {
 			// Moves Log or Turtle to the right
 
 			if (SpawnedHazards.get(i) instanceof Log) {
-				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() - 2);
-				if(SpawnedHazards.get(i).getX() < -128){
-					SpawnedHazards.get(i).setX(576);
-				}
-				// Verifies the hazards Rectangles aren't null and
-				// If the player Rectangle intersects with the Log or Turtle Rectangle, then
-				// move player to the right.
-				if (SpawnedHazards.get(i).GetCollision() != null
-						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())&&player.getX()-64>0) {
-					player.setX(player.getX() - 2);
-
-				}
-
-			}
-			if (SpawnedHazards.get(i) instanceof Turtle) {
 				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() + 2);
 				if(SpawnedHazards.get(i).getX() >576) {
 					SpawnedHazards.get(i).setX(-128);
@@ -198,8 +183,22 @@ public class WorldManager {
 				// If the player Rectangle intersects with the Log or Turtle Rectangle, then
 				// move player to the right.
 				if (SpawnedHazards.get(i).GetCollision() != null
-						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())&& player.getX()+64<576) {
+						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())&& player.getX()<576) {
 					player.setX(player.getX() + 2);
+
+				}
+			}
+			if (SpawnedHazards.get(i) instanceof Turtle) {
+				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() - 2);
+				if(SpawnedHazards.get(i).getX() < -128){
+					SpawnedHazards.get(i).setX(576);
+				}
+				// Verifies the hazards Rectangles aren't null and
+				// If the player Rectangle intersects with the Log or Turtle Rectangle, then
+				// move player to the right.
+				if (SpawnedHazards.get(i).GetCollision() != null
+						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())&&player.getX()>0) {
+					player.setX(player.getX() - 2);
 
 				}
 
