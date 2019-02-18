@@ -342,9 +342,14 @@ public class WorldManager {
                 randInt = 64 * rand.nextInt(9);
             }
         }
-		else {
-			randInt = 64 * rand.nextInt(10);
-			SpawnedHazards.add(new Log(handler, randInt, yPosition));
+		else{
+			randInt = 64 * rand.nextInt(9);
+			SpawnedHazards.add(new Log(handler, randInt , yPosition));
+			for (int X = 0; X < 4; X++) {
+				int extraBlock = randInt + 128;
+				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
+
+			}
 		}
 
 	}
@@ -362,6 +367,11 @@ public class WorldManager {
 		else {
 			randInt = 64 * rand.nextInt(10);
 			SpawnedHazards.add(new Log(handler, randInt, yPosition));
+			for (int X = 0; X < 4; X++) {
+				int extraBlock = randInt + 192;
+				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
+
+			}
 		}
 
 	}
