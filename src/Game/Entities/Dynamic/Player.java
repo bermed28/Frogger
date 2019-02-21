@@ -1,7 +1,10 @@
 package Game.Entities.Dynamic;
 
 import Game.Entities.EntityBase;
+import Game.Entities.Static.StaticBase;
+import Game.Entities.Static.Tree;
 import Game.GameStates.State;
+import Game.World.WorldManager;
 import Main.Handler;
 import Resources.Images;
 
@@ -17,9 +20,13 @@ public class Player extends EntityBase {
 
 
     private Rectangle player;
+    //private Rectangle nextBlockCHeck;
     public String facing = "UP";
-    private Boolean moving = false;
+    public Boolean moving = false;
     private int moveCoolDown=0;
+    public int score = 0;
+    public int scoreTracker = 0;
+    public int sumVAR= 0;
 
     private int index =0;
 
@@ -29,9 +36,15 @@ public class Player extends EntityBase {
         this.handler.getEntityManager().getEntityList().add(this);
 
         player = new Rectangle(); 	// see UpdatePlayerRectangle(Graphics g) for its usage.
+        //nextBlockCHeck = new Rectangle();
     }
 
     public void tick(){
+
+        if(scoreTracker > score){
+            score +=1;
+            System.out.println(score);
+        }
 
         if(moving) {
             animateMovement();
@@ -74,6 +87,7 @@ public class Player extends EntityBase {
         /////////////////MOVE UP///////////////
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && facing.equals("UP")&& this.getY()-128>0){
             moving=true;
+            scoreTracker += 1;
         }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && !facing.equals("UP")){
             if(facing.equals("DOWN")) {
                 if(this.getX() % 64 >= 64 / 2 ) {
@@ -95,7 +109,6 @@ public class Player extends EntityBase {
             }
             facing = "UP";
         }
-
         /////////////////MOVE LEFT///////////////
         else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_A) && !moving && facing.equals("LEFT")&& this.getX()>0){
             moving=true;
@@ -110,6 +123,7 @@ public class Player extends EntityBase {
         /////////////////MOVE DOWN///////////////
         else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S) && !moving && facing.equals("DOWN")){
             moving=true;
+            scoreTracker -=1;
         }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S) && !moving && !facing.equals("DOWN")){
             reGrid();
             if(facing.equals("RIGHT")){
@@ -222,6 +236,7 @@ public class Player extends EntityBase {
     private void UpdatePlayerRectangle(Graphics g) {
 
         player = new Rectangle(this.getX(), this.getY(), getWidth(), getHeight());
+        //nextBlockCHeck = new Rectangle(this.getX(), this.getY()+ 64, getWidth(), getHeight());
 
         if (facing.equals("UP")){
             player = new Rectangle(this.getX(), this.getY() - 64, getWidth(), getHeight());

@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class Tree extends StaticBase {
 	private Animation anim;
-	private Rectangle tree;
+	public Rectangle tree;
 	private Random rand;
 
 	public Tree(Handler handler, int xPosition, int yPosition) {

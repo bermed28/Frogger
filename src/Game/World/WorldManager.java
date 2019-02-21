@@ -205,12 +205,16 @@ public class WorldManager {
 			}
 			if (SpawnedHazards.get(i) instanceof Tree) {
                 SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX());
+//                int treeScore = player.scoreTracker;
 
                 // Verifies the hazards Rectangles aren't null and
                 // If the player Rectangle intersects with the Tree, then
                 // move player his original position but it's not working yet.
                 if (SpawnedHazards.get(i).GetCollision() != null
                         && player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
+//                	player.scoreTracker = treeScore;
+//                	player.score = treeScore;
+					player.sumVAR = 0;
                 	if(player.facing.equals("UP")) {
 						player.setY(player.getY() + 8);
 					}if(player.facing.equals("DOWN")) {
@@ -345,11 +349,12 @@ public class WorldManager {
 		else{
 			randInt = 64 * rand.nextInt(9);
 			SpawnedHazards.add(new Log(handler, randInt , yPosition));
-			for (int X = 0; X < 4; X++) {
-				int extraBlock = randInt + 128;
-				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
-
-			}
+//			int extraBlock = randInt + 384;
+//			for (int X = 0; X < 4; X++) {
+//				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
+//				extraBlock =+ 192;
+//
+//			}
 		}
 
 	}
@@ -367,11 +372,11 @@ public class WorldManager {
 		else {
 			randInt = 64 * rand.nextInt(10);
 			SpawnedHazards.add(new Log(handler, randInt, yPosition));
-			for (int X = 0; X < 4; X++) {
-				int extraBlock = randInt + 192;
-				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
-
-			}
+//			for (int X = 0; X < 4; X++) {
+//				int extraBlock = randInt + 192;
+//				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
+//
+//			}
 		}
 
 	}
