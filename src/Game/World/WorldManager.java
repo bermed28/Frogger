@@ -48,7 +48,7 @@ public class WorldManager {
 	private int movementSpeed;								// Movement of the tiles going downwards.
     private int i;
 
-    public WorldManager(Handler handler) {
+	public WorldManager(Handler handler) {
         this.handler = handler;
 
         AreasAvailables = new ArrayList<>();				// Here we add the Tiles to be utilized.
@@ -175,7 +175,7 @@ public class WorldManager {
 
 			if (SpawnedHazards.get(i) instanceof Log) {
 				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() + 2);
-				if(SpawnedHazards.get(i).getX() >576) {
+				if(SpawnedHazards.get(i).getX() >704) {
 					SpawnedHazards.get(i).setX(-128);
 				}
 
@@ -205,16 +205,13 @@ public class WorldManager {
 			}
 			if (SpawnedHazards.get(i) instanceof Tree) {
                 SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX());
-//                int treeScore = player.scoreTracker;
 
-                // Verifies the hazards Rectangles aren't null and
+				// Verifies the hazards Rectangles aren't null and
                 // If the player Rectangle intersects with the Tree, then
                 // move player his original position but it's not working yet.
                 if (SpawnedHazards.get(i).GetCollision() != null
                         && player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
-//                	player.scoreTracker = treeScore;
-//                	player.score = treeScore;
-					player.sumVAR = 0;
+					player.notColliding =false;
                 	if(player.facing.equals("UP")) {
 						player.setY(player.getY() + 8);
 					}if(player.facing.equals("DOWN")) {
@@ -225,7 +222,9 @@ public class WorldManager {
 						player.setX(player.getX() - 8);
 					}
 
-                }
+                }else{
+                	player.notColliding = true;
+				}
 			}
 
 			if (SpawnedHazards.get(i) instanceof Stone) {
@@ -347,14 +346,13 @@ public class WorldManager {
             }
         }
 		else{
-			randInt = 64 * rand.nextInt(9);
-			SpawnedHazards.add(new Log(handler, randInt , yPosition));
-//			int extraBlock = randInt + 384;
-//			for (int X = 0; X < 4; X++) {
-//				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
-//				extraBlock =+ 192;
-//
-//			}
+//			randInt = 64 * rand.nextInt(9);
+			SpawnedHazards.add(new Log(handler, 0, yPosition));
+			int extraBlock = 0;
+			for (int X = 0; X < 3; X++) {
+				extraBlock -= 192;
+				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
+			}
 		}
 
 	}
@@ -370,13 +368,14 @@ public class WorldManager {
 
 		}
 		else {
-			randInt = 64 * rand.nextInt(10);
-			SpawnedHazards.add(new Log(handler, randInt, yPosition));
-//			for (int X = 0; X < 4; X++) {
-//				int extraBlock = randInt + 192;
-//				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
-//
-//			}
+//			randInt = 64 * rand.nextInt(9);
+			SpawnedHazards.add(new Log(handler, 0, yPosition));
+			int extraBlock = 0;
+			for (int X = 0; X < 3; X++) {
+				extraBlock -= 192;
+				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
+
+			}
 		}
 
 	}
