@@ -1,9 +1,13 @@
 package Game.World;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.util.Random;
+import java.awt.Rectangle;
 
-import Game.Entities.Dynamic.Player;
+import Game.Entities.Static.StaticBase;
+import Game.GameStates.State;
+import Game.GameStates.DeathState;
+
 import Main.Handler;
 import Resources.Animation;
 import Resources.Images;
@@ -11,18 +15,19 @@ import Resources.Images;
 public class WaterArea extends BaseArea {
 
     private Animation anim;
-
-
+    private DeathState deathState;
 
     WaterArea(Handler handler, int yPosition) {
         super(handler, yPosition);
         // Instantiate the animation of this Water, and it starts it at a random frame.
         anim=new Animation(384,Images.Water,new Random().nextInt(3));
+
+
     }
 
     @Override
     public void tick() {
-        anim.tick();	// Animation frame movement.
+        anim.tick(); // Animation frame movement.
 
     }
 

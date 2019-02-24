@@ -9,7 +9,7 @@ public class BaseArea {
 
     int yPosition;
 
-    boolean canStepOn = true;
+    public boolean canStepOn = true;
 
     /*
      * Constructs the yPosition of the Tile.

@@ -9,12 +9,14 @@ import Game.Entities.Static.Turtle;
 import Game.Entities.Static.*;
 import Game.GameStates.State;
 import Main.Handler;
+import Resources.Images;
 import UI.UIManager;
 
 import java.awt.*;
 import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.Random;
+
 
 /**
  * Literally the world. This class is very important to understand.
@@ -26,13 +28,16 @@ import java.util.Random;
 public class WorldManager {
 
 	private ArrayList<BaseArea> AreasAvailables;			// Lake, empty and grass area (NOTE: The empty tile is just the "sand" tile. Ik, weird name.)
-	private ArrayList<StaticBase> StaticEntitiesAvailables;	// Has the hazards: LillyPad, Log, Tree, and Turtle.
+	private ArrayList<StaticBase> StaticEntitiesAvailables;// Has the hazards: LillyPad, Log, Tree, and Turtle.
 
 	private ArrayList<BaseArea> SpawnedAreas;				// Areas currently on world
 	private ArrayList<StaticBase> SpawnedHazards;			// Hazards currently on world.
     
     Long time;
     Boolean reset = true;
+    WaterArea waterArea;
+
+
     
     Handler handler;
 
@@ -205,10 +210,6 @@ public class WorldManager {
 			}
 			if (SpawnedHazards.get(i) instanceof Tree) {
                 SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX());
-
-				// Verifies the hazards Rectangles aren't null and
-                // If the player Rectangle intersects with the Tree, then
-                // move player his original position but it's not working yet.
                 if (SpawnedHazards.get(i).GetCollision() != null
                         && player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
 					player.notColliding =false;
@@ -229,10 +230,6 @@ public class WorldManager {
 
 			if (SpawnedHazards.get(i) instanceof Stone) {
 				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX());
-
-				// Verifies the hazards Rectangles aren't null and
-				// If the player Rectangle intersects with the Tree, then
-				// move player his original position but it's not working yet.
 				if (SpawnedHazards.get(i).GetCollision() != null
 						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
 					if(player.facing.equals("UP")) {
@@ -305,6 +302,7 @@ public class WorldManager {
 			} else {
 
             	randomArea = new WaterArea(handler, yPosition);
+
             	//Used to not spawn two lily pad in consecutive Y positions
 				//i used to check if a lilypad spawned before
             	if(i == 1){
@@ -313,6 +311,7 @@ public class WorldManager {
 					SpawnHazard(yPosition);
 				}
 			}
+
 
         } else if (randomArea instanceof RoadArea) {
 			randomArea = new RoadArea(handler, yPosition);
@@ -393,15 +392,12 @@ public class WorldManager {
 			}
 
 		}
-
 		if(choice <= 5) {
             randInt = 64 * rand.nextInt(2);
             SpawnedHazards.add(new Stone(handler, randInt, yPosition));
 
         }
-
-
-
 	}
-    
+
+
 }
