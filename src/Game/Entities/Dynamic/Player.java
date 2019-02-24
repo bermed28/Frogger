@@ -26,7 +26,7 @@ public class Player extends EntityBase {
     private int moveCoolDown=0;
     public int scoreTracker = 0;
     public static int score = 0;
-    public boolean notColliding = true;
+//    public boolean notColliding = true;
 
     private int index =0;
 
@@ -48,16 +48,12 @@ public class Player extends EntityBase {
 //        }
 //
 
-
         if(moving) {
             animateMovement();
         }
 
         if(!moving){
             move();
-        }
-        if(this.getY() > 768) {
-            State.setState(handler.getGame().deathState);
         }
         if((player.getX()<0)){
             this.setX(64);
@@ -88,11 +84,11 @@ public class Player extends EntityBase {
         index=0;
 
         /////////////////MOVE UP///////////////
-        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && facing.equals("UP")&& this.getY()-128>0){
-            moving=true;
-            if (notColliding){
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && facing.equals("UP")&& this.getY()-128>0) {
+            moving = true;
+//            if (notColliding){
             scoreTracker += 1;
-            }
+       // }
         }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && !facing.equals("UP")){
             if(facing.equals("DOWN")) {
                 if(this.getX() % 64 >= 64 / 2 ) {
@@ -128,9 +124,9 @@ public class Player extends EntityBase {
         /////////////////MOVE DOWN///////////////
         else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S) && !moving && facing.equals("DOWN")){
             moving=true;
-            if (notColliding) {
+//            if (notColliding) {
                 scoreTracker -= 1;
-            }
+//            }
         }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S) && !moving && !facing.equals("DOWN")){
             reGrid();
             if(facing.equals("RIGHT")){
