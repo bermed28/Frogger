@@ -5,6 +5,7 @@ import Resources.Images;
 import UI.UIImageButton;
 import UI.UIManager;
 import Resources.MusicHandler;
+import Game.Entities.Dynamic.Player;
 
 import java.awt.*;
 
@@ -16,12 +17,14 @@ public class DeathState extends State {
     private int count = 0;
     private UIManager uiManager;
     private MusicHandler musicHandler;
+    private Player player;
 
     public DeathState(Handler handler) {
         super(handler);
         uiManager = new UIManager(handler);
         handler.getMouseManager().setUimanager(uiManager);
         musicHandler = new MusicHandler();
+        player = new Player(handler);
 
         /*
          * Adds a button that by being pressed changes the State
@@ -31,6 +34,7 @@ public class DeathState extends State {
             handler.getMouseManager().setUimanager(null);
             handler.getGame().reStart();
             State.setState(handler.getGame().gameState);
+            Player.score =0;
         }));
 
         // title menu button
@@ -70,6 +74,8 @@ public class DeathState extends State {
     public void render(Graphics g) {
         g.drawImage(Images.GameOver,0,0,handler.getGame().getWidth(),handler.getGame().getHeight(),null);
         uiManager.Render(g);
+//        String s = Integer.toString(player.score);
+        g.drawString(String.valueOf(player.score), handler.getWidth() -300, 450);
 
     }
 }

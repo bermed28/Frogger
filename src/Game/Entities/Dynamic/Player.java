@@ -24,8 +24,8 @@ public class Player extends EntityBase {
     public String facing = "UP";
     public Boolean moving = false;
     private int moveCoolDown=0;
-    public int score = 0;
     public int scoreTracker = 0;
+    public static int score = 0;
     public boolean notColliding = true;
 
     private int index =0;
@@ -41,10 +41,13 @@ public class Player extends EntityBase {
 
     public void tick(){
 
-        if(scoreTracker > score && notColliding){
-            score +=1;
-            System.out.println(score);
-        }
+//        if(scoreTracker > score){
+//            this.score +=1;
+////            score +=1;
+//            System.out.println(score);
+//        }
+//
+
 
         if(moving) {
             animateMovement();
@@ -157,6 +160,10 @@ public class Player extends EntityBase {
                 setX(getX()+64);
             }
             facing = "RIGHT";
+        }
+        if(scoreTracker > score){
+            score ++;
+            System.out.println(score);
         }
     }
 

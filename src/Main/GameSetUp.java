@@ -171,7 +171,6 @@ public class GameSetUp implements Runnable {
         //Clear Screen
         g.clearRect(0, 0, width, height);
 
-
         g.drawImage(loading ,0,0,width,height,null);
         if(State.getState() != null)
             State.getState().render(g);

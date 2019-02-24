@@ -4,6 +4,7 @@ import Game.Entities.EntityManager;
 import Game.World.WorldManager;
 import Main.Handler;
 import java.awt.*;
+import Game.Entities.Dynamic.Player;
 
 import com.sun.glass.events.KeyEvent;
 
@@ -16,12 +17,14 @@ import com.sun.glass.events.KeyEvent;
  * The WorldManager Class is constructed.
  */
 public class GameState extends State {
+    private Player player;
 
 
     public GameState(Handler handler){
         super(handler);
         handler.setEntityManager(new EntityManager(handler));
         handler.setWorldManager(new WorldManager(handler));
+        player = new Player(handler);
 
     }
 
@@ -38,6 +41,7 @@ public class GameState extends State {
     @Override
     public void render(Graphics g) {
         handler.getWorld().render(g);
+        g.drawString(String.valueOf(player.score), handler.getWidth() -50, 50);
 
     }
 
