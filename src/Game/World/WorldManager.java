@@ -214,9 +214,11 @@ public class WorldManager {
                         && player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
 //					player.notColliding =false;
                 	if(player.facing.equals("UP")) {
-						player.setY(player.getY() + 8);
+                		player.scoreTracker --;
+                		Player.score --;
+						player.setY(player.getY() + 64);
 					}if(player.facing.equals("DOWN")) {
-						player.setY(player.getY() -8);
+						player.setY(player.getY() -64);
 					}if(player.facing.equals("LEFT")) {
 						player.setX(player.getX() + 8);
 					}if(player.facing.equals("RIGHT")) {
