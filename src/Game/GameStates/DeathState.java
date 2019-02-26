@@ -48,11 +48,6 @@ public class DeathState extends State {
 //        musicHandler.setLoop(true);
 //        musicHandler.setVolume(0.25);
 
-
-
-
-
-
     }
 
     @Override
@@ -74,8 +69,9 @@ public class DeathState extends State {
     public void render(Graphics g) {
         g.drawImage(Images.GameOver,0,0,handler.getGame().getWidth(),handler.getGame().getHeight(),null);
         uiManager.Render(g);
-//        String s = Integer.toString(player.score);
-        g.drawString(String.valueOf(player.score), handler.getWidth() -300, 450);
+        g.setColor(Color.black);
+        g.setFont(new Font("Bauhaus 93",Font.ROMAN_BASELINE,75));
+        g.drawString(String.valueOf(player.score), handler.getWidth() -325, 470);
 
     }
 }

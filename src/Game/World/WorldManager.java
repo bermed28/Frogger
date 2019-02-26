@@ -268,8 +268,8 @@ public class WorldManager {
 				PowerUp p = (PowerUp) (SpawnedHazards.get(i));
 				if (SpawnedHazards.get(i).GetCollision() != null
 						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision()) && p.notCollected) {
-					player.scoreTracker += 5;
-					Player.score += 5;
+					player.scoreTracker += 2.5;
+					Player.score += 2.5;
 					p.notCollected = false;
 					SpawnedHazards.remove(i);
 					System.out.println("i");
