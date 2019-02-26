@@ -3,6 +3,7 @@ package Game.World;
 import Game.Entities.Dynamic.Player;
 import Game.Entities.Static.LillyPad;
 import Game.Entities.Static.Log;
+import Game.Entities.Static.PowerUp;
 import Game.Entities.Static.StaticBase;
 import Game.Entities.Static.Tree;
 import Game.Entities.Static.Turtle;
@@ -42,7 +43,8 @@ public class WorldManager {
     Handler handler;
 
 
-	private Player player;									// How do we find the frog coordinates? How do we find the Collisions? This bad boy.
+	private Player player; // How do we find the frog coordinates? How do we find the Collisions? This bad boy.
+	private PowerUp powerUp;
     
     UIManager object = new UIManager(handler);
     UI.UIManager.Vector object2 = object.new Vector();
@@ -69,6 +71,8 @@ public class WorldManager {
         StaticEntitiesAvailables.add(new Tree(handler, 0, 0));
 		StaticEntitiesAvailables.add(new Stone(handler, 0, 0));
         StaticEntitiesAvailables.add(new Turtle(handler, 0, 0));
+		StaticEntitiesAvailables.add(new PowerUp(handler, 0, 0));
+
 
         SpawnedAreas = new ArrayList<>();
         SpawnedHazards = new ArrayList<>();
@@ -208,6 +212,7 @@ public class WorldManager {
 				}
 
 			}
+
 			if (SpawnedHazards.get(i) instanceof Tree) {
                 SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX());
                 if (SpawnedHazards.get(i).GetCollision() != null
@@ -255,6 +260,20 @@ public class WorldManager {
 
 			if (player.getY() > handler.getHeight()) {
 				State.setState(handler.getGame().deathState);
+			}
+		}
+
+		for(int i = 0; i < SpawnedHazards.size(); i++) {
+			if (SpawnedHazards.get(i) instanceof PowerUp) {
+				PowerUp p = (PowerUp) (SpawnedHazards.get(i));
+				if (SpawnedHazards.get(i).GetCollision() != null
+						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision()) && p.notCollected) {
+					player.scoreTracker += 5;
+					Player.score += 5;
+					p.notCollected = false;
+					SpawnedHazards.remove(i);
+					System.out.println("i");
+				}
 			}
 		}
 	}
@@ -318,6 +337,7 @@ public class WorldManager {
 
 		} else {
             randomArea = new EmptyArea(handler, yPosition);
+            powerUpSpawn(yPosition);
         }
         return randomArea;
     }
@@ -345,7 +365,6 @@ public class WorldManager {
             }
         }
 		else{
-//			randInt = 64 * rand.nextInt(9);
 			SpawnedHazards.add(new Log(handler, 0, yPosition));
 			int extraBlock = 0;
 			for (int X = 0; X < 3; X++) {
@@ -359,8 +378,8 @@ public class WorldManager {
 		Random rand = new Random();
 		int randInt;
 		int choice = rand.nextInt(10);
-		i = 0;
-		// Chooses between Log or Lillypad
+		i = 0; //makes sure 2 lilly's dont spawn in two consecutive Y rows, DO NOT DELETE THIS
+		// Chooses between Log or Turtle
 		if (choice <=2) {
 			randInt = 64 * rand.nextInt(4);
 			SpawnedHazards.add(new Turtle(handler, randInt, yPosition));
@@ -398,6 +417,18 @@ public class WorldManager {
 
         }
 	}
+
+	public void powerUpSpawn(int yPosition) {
+		Random rand = new Random();
+		int randInt;
+		for(int spawn = 0; spawn < 2; spawn++) {
+			randInt =  64 * rand.nextInt(1);
+			SpawnedHazards.add(new PowerUp(handler, randInt, yPosition));
+		}
+
+
+	}
+
 
 
 }

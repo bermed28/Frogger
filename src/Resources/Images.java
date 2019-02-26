@@ -32,6 +32,7 @@ public class Images {
     public static BufferedImage icon2;
 
     public static SpriteSheet playerSheet;
+    public static BufferedImage PowerUp;
     public static BufferedImage[] Player;
     public static BufferedImage[] Turtle;
     public static SpriteSheet WaterSheet;
@@ -133,6 +134,7 @@ public class Images {
             log = playerSheet.crop(387,259,184,57);
             Tree =  ImageIO.read(getClass().getResourceAsStream("/Sheets/Tree.png"));
             Rock =  ImageIO.read(getClass().getResourceAsStream("/Sheets/Stone.png"));
+            PowerUp =  ImageIO.read(getClass().getResourceAsStream("/Sheets/BitCoin.png"));
             
             object[0] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object1.png"));
             object[1] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object2.png"));
