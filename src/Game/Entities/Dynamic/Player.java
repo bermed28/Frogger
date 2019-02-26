@@ -159,7 +159,8 @@ public class Player extends EntityBase {
         }
         if(scoreTracker > score){
             score ++;
-//            System.out.println(score);
+//
+
         }
     }
 

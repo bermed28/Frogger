@@ -71,7 +71,7 @@ public class DeathState extends State {
         uiManager.Render(g);
         g.setColor(Color.black);
         g.setFont(new Font("Bauhaus 93",Font.ROMAN_BASELINE,75));
-        g.drawString(String.valueOf(player.score), handler.getWidth() -325, 470);
+        g.drawString(String.valueOf(player.score), handler.getWidth() -350, 470);
 
     }
 }
