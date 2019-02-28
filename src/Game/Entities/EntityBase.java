@@ -15,8 +15,6 @@ public class EntityBase {
 
     public EntityBase(Handler handler) {
         this.handler = handler;
-
-
     }
 
     public void tick(){

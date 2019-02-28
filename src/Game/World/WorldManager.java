@@ -4,17 +4,16 @@ import Game.Entities.Dynamic.Player;
 import Game.Entities.Static.LillyPad;
 import Game.Entities.Static.Log;
 import Game.Entities.Static.PowerUp;
+import Game.Entities.Static.Car;
 import Game.Entities.Static.StaticBase;
 import Game.Entities.Static.Tree;
 import Game.Entities.Static.Turtle;
 import Game.Entities.Static.*;
 import Game.GameStates.State;
 import Main.Handler;
-import Resources.Images;
 import UI.UIManager;
 
 import java.awt.*;
-import java.lang.reflect.GenericArrayType;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -71,6 +70,7 @@ public class WorldManager {
         StaticEntitiesAvailables.add(new Tree(handler, 0, 0));
 		StaticEntitiesAvailables.add(new Stone(handler, 0, 0));
         StaticEntitiesAvailables.add(new Turtle(handler, 0, 0));
+        StaticEntitiesAvailables.add(new Car(handler, 0, 0));
 		StaticEntitiesAvailables.add(new PowerUp(handler, 0, 0));
 
 
@@ -171,12 +171,8 @@ public class WorldManager {
     }
 
 	private void HazardMovement() {
-		//int positionYLast = player.getY();
-		//int positionXLast = player.getX();
 
 		for (int i = 0; i < SpawnedHazards.size(); i++) {
-
-
 			// Moves hazard down
 			SpawnedHazards.get(i).setY(SpawnedHazards.get(i).getY() + movementSpeed);
 
@@ -189,12 +185,11 @@ public class WorldManager {
 				}
 
 				// Verifies the hazards Rectangles aren't null and
-				// If the player Rectangle intersects with the Log or Turtle Rectangle, then
+				// If the player Rectangle intersects with the Log Rectangle, then
 				// move player to the right.
 				if (SpawnedHazards.get(i).GetCollision() != null
 						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())&& player.getX()<576) {
 					player.setX(player.getX() + 2);
-
 				}
 			}
 			if (SpawnedHazards.get(i) instanceof Turtle) {
@@ -203,7 +198,7 @@ public class WorldManager {
 					SpawnedHazards.get(i).setX(576);
 				}
 				// Verifies the hazards Rectangles aren't null and
-				// If the player Rectangle intersects with the Log or Turtle Rectangle, then
+				// If the player Rectangle intersects with the Turtle Rectangle, then
 				// move player to the right.
 				if (SpawnedHazards.get(i).GetCollision() != null
 						&& player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())&&player.getX()>0) {
@@ -212,6 +207,21 @@ public class WorldManager {
 				}
 
 			}
+
+            if (SpawnedHazards.get(i) instanceof Car) {
+                SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() + 2);
+                if(SpawnedHazards.get(i).getX() >704) {
+                    SpawnedHazards.get(i).setX(-128);
+                }
+
+                // Verifies the hazards Rectangles aren't null and
+                // If the player Rectangle intersects with the Log Rectangle, then
+                // move player to the right.
+                if (SpawnedHazards.get(i).GetCollision() != null
+                        && player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
+                    State.setState(handler.getGame().deathState);
+                }
+            }
 
 			if (SpawnedHazards.get(i) instanceof Tree) {
                 SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX());
@@ -245,9 +255,7 @@ public class WorldManager {
 					}if(player.facing.equals("RIGHT")) {
 						player.setX(player.getX() - 8);
 					}
-
 				}
-
 			}
 
             // if hazard has passed the screen height, then remove this hazard.
@@ -269,14 +277,11 @@ public class WorldManager {
 					Player.score += 2.5;
 					p.notCollected = false;
 					SpawnedHazards.remove(i);
-					System.out.println("i");
 				}
 			}
 		}
 	}
 
-	
-	
     public void render(Graphics g){
     	
        for(BaseArea area : SpawnedAreas) {
@@ -285,12 +290,9 @@ public class WorldManager {
     	
        for (StaticBase hazards : SpawnedHazards) {
     		hazards.render(g);
- 
        }
-    	
        player.render(g);       
-       this.object2.render(g);      
-
+       this.object2.render(g);
     }
     
     /*
@@ -311,7 +313,6 @@ public class WorldManager {
 				grassHazard(yPosition);
 			}
 
-
         } else if (randomArea instanceof WaterArea) {
             if(player.getX() == 0){
 				randomArea = new EmptyArea(handler, yPosition);
@@ -320,7 +321,7 @@ public class WorldManager {
             	randomArea = new WaterArea(handler, yPosition);
 
             	//Used to not spawn two lily pad in consecutive Y positions
-				//i used to check if a lilypad spawned before
+				//i used to check if a lilly pad spawned before
             	if(i == 1){
             		TurtleLogHazard(yPosition);
 				}else {
@@ -328,10 +329,9 @@ public class WorldManager {
 				}
 			}
 
-
         } else if (randomArea instanceof RoadArea) {
 			randomArea = new RoadArea(handler, yPosition);
-
+            spawnCar(yPosition);
 		} else {
             randomArea = new EmptyArea(handler, yPosition);
             powerUpSpawn(yPosition);
@@ -350,7 +350,6 @@ public class WorldManager {
 		if (choice <=2) {
 			randInt = 64 * rand.nextInt(4);
 			SpawnedHazards.add(new Turtle(handler, randInt, yPosition));
-
 		}
 		else if (choice <=5) {
 		    i = 1;
@@ -369,7 +368,6 @@ public class WorldManager {
 				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
 			}
 		}
-
 	}
 	private void TurtleLogHazard(int yPosition) {
 		Random rand = new Random();
@@ -380,20 +378,26 @@ public class WorldManager {
 		if (choice <=2) {
 			randInt = 64 * rand.nextInt(4);
 			SpawnedHazards.add(new Turtle(handler, randInt, yPosition));
-
 		}
 		else {
-//			randInt = 64 * rand.nextInt(9);
 			SpawnedHazards.add(new Log(handler, 0, yPosition));
 			int extraBlock = 0;
 			for (int X = 0; X < 3; X++) {
 				extraBlock -= 192;
 				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
-
 			}
 		}
-
 	}
+
+	private void spawnCar(int yPosition) {
+	    Random rand = new Random();
+	    int randInt = rand.nextInt(2);
+	    int extraBlock = 0;
+        for (int X = 0; X <= randInt; X++) {
+            extraBlock -= 192;
+            SpawnedHazards.add(new Car(handler, extraBlock, yPosition));
+        }
+    }
 
 	private void grassHazard(int yPosition) {
 		Random rand = new Random();
@@ -406,26 +410,20 @@ public class WorldManager {
 				SpawnedHazards.add(new Tree(handler, randInt, yPosition));
 				randInt = 64 * rand.nextInt(8);
 			}
-
 		}
 		if(choice <= 5) {
             randInt = 64 * rand.nextInt(2);
             SpawnedHazards.add(new Stone(handler, randInt, yPosition));
-
         }
 	}
 
 	public void powerUpSpawn(int yPosition) {
-		Random rand = new Random();
-		int randInt;
-		for(int spawn = 0; spawn < 2; spawn++) {
-			randInt =  64 * rand.nextInt(1);
-			SpawnedHazards.add(new PowerUp(handler, randInt, yPosition));
-		}
-
-
+	    Random rand = new Random();
+	    int randInt;
+        randInt = 64 * rand.nextInt(8);
+        for (int X = 0; X <= 1; X++) {
+            SpawnedHazards.add(new PowerUp(handler, randInt, yPosition));
+            randInt = 64 * rand.nextInt(8);
+        }
 	}
-
-
-
 }

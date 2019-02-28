@@ -17,18 +17,13 @@ public class PowerUp extends StaticBase {
         // Sets original position to be this one.
         this.setY(yPosition);
         this.setX(xPosition);
-
-
     }
-
 
     @Override
     public void render(Graphics g) {
         g.drawImage(Images.PowerUp, this.getX(), this.getY(), 64, 64, null);
         powerUp = new Rectangle(this.getX(), this.getY()+5, 64, 55);
-
     }
-
 
     @Override
     public Rectangle GetCollision() {

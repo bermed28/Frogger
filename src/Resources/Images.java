@@ -50,6 +50,7 @@ public class Images {
     public static BufferedImage grass;
     public static BufferedImage Tree;
     public static BufferedImage Rock;
+    public static BufferedImage Car;
     public static BufferedImage[] Restart;
 
     public static BufferedImage[] object;
@@ -94,7 +95,7 @@ public class Images {
             Player[5]= playerSheet.crop(229,1,56,75);
             Player[6]= playerSheet.crop(285,18,59,54);
             Player[7]= playerSheet.crop(0,30,52,39);Player[0]= playerSheet.crop(0,30,52,39);
-            
+            //303,485
             // emerges
             Turtle[0] = playerSheet.crop(502, 88, 71, 57);
             Turtle[1] = playerSheet.crop(447, 88, 71, 57);
@@ -134,6 +135,7 @@ public class Images {
             log = playerSheet.crop(387,259,184,57);
             Tree =  ImageIO.read(getClass().getResourceAsStream("/Sheets/Tree.png"));
             Rock =  ImageIO.read(getClass().getResourceAsStream("/Sheets/Stone.png"));
+            Car = playerSheet.crop(304,485,136,68);
             PowerUp =  ImageIO.read(getClass().getResourceAsStream("/Sheets/BitCoin.png"));
             
             object[0] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object1.png"));

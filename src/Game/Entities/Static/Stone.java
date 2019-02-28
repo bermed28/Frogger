@@ -1,16 +1,12 @@
 package Game.Entities.Static;
 
 import Main.Handler;
-import Resources.Animation;
 import Resources.Images;
-
 import java.awt.*;
-import java.util.Random;
+
 
 public class Stone extends StaticBase {
-    private Animation anim;
     private Rectangle stone;
-    private Random rand;
 
     public Stone(Handler handler, int xPosition, int yPosition) {
         super(handler);
@@ -26,7 +22,6 @@ public class Stone extends StaticBase {
 
     @Override
     public Rectangle GetCollision() {
-
         return stone;
     }
 }

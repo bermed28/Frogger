@@ -1,16 +1,15 @@
 package Game.Entities.Static;
 
 import Main.Handler;
-import Resources.Animation;
 import Resources.Images;
 
 import java.awt.*;
-import java.util.Random;
+
 
 public class Tree extends StaticBase {
-	private Animation anim;
+
 	public Rectangle tree;
-	private Random rand;
+
 
 	public Tree(Handler handler, int xPosition, int yPosition) {
 		super(handler);
