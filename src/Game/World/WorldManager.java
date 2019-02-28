@@ -431,8 +431,8 @@ public class WorldManager {
 	public void waterDeath() {
 		for(int i = 0 ; i < SpawnedAreas.size(); i++) {
 			if(SpawnedAreas.get(i) instanceof WaterArea && player.getY() == SpawnedAreas.get(i).getYPosition()) {
-				for(int  j = 0 ; i < SpawnedHazards.size();i++) {
-					if(SpawnedHazards.get(j).getX() - 5 <= player.getX() &&
+				for(int  j = 0 ; j < SpawnedHazards.size();j++) {
+					if(SpawnedHazards.get(j).getX()  <= player.getX() &&
 							(SpawnedHazards.get(j).getX() + 5) >= (player.getX() + handler.getWidth())
 							&& SpawnedHazards.get(j).getY() + 5 <= player.getY()
 							&& SpawnedHazards.get(j).getY() -5 >= (player.getY() + handler.getHeight())){
