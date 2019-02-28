@@ -85,6 +85,7 @@ public class Player extends EntityBase {
 
         /////////////////MOVE UP///////////////
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && facing.equals("UP")&& this.getY()-128>0) {
+
             moving = true;
 //            if (notColliding){
             scoreTracker += 1;

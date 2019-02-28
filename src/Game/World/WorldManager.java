@@ -43,8 +43,7 @@ public class WorldManager {
 
 
 	private Player player; // How do we find the frog coordinates? How do we find the Collisions? This bad boy.
-	private PowerUp powerUp;
-    
+
     UIManager object = new UIManager(handler);
     UI.UIManager.Vector object2 = object.new Vector();
 
@@ -128,12 +127,10 @@ public class WorldManager {
 		}
 		
 		if(this.object2.isSorted) {
-			
-			if(System.currentTimeMillis() - this.time >= 2000) {		
-				this.object2.setOnScreen(true);	
-				this.reset = true;
-			}
-			
+			if(System.currentTimeMillis() - this.time >= 2000) {
+                this.object2.setOnScreen(true);
+                this.reset = true;
+            }
 		}
 		
 		for (BaseArea area : SpawnedAreas) {
@@ -160,15 +157,22 @@ public class WorldManager {
 			}
 		}
 
+
+
+
+
+
 		HazardMovement();
-		
+		//waterDeath();
         player.tick();
         //make player move the same as the areas
         player.setY(player.getY()+movementSpeed); 
         
         object2.tick();
-   
-    }
+
+
+
+	}
 
 	private void HazardMovement() {
 
@@ -215,8 +219,8 @@ public class WorldManager {
                 }
 
                 // Verifies the hazards Rectangles aren't null and
-                // If the player Rectangle intersects with the Log Rectangle, then
-                // move player to the right.
+                // If the player Rectangle intersects with the Car Rectangle, then
+                // it kills the player.
                 if (SpawnedHazards.get(i).GetCollision() != null
                         && player.getPlayerCollision().intersects(SpawnedHazards.get(i).GetCollision())) {
                     State.setState(handler.getGame().deathState);
@@ -283,7 +287,6 @@ public class WorldManager {
 	}
 
     public void render(Graphics g){
-    	
        for(BaseArea area : SpawnedAreas) {
     	   area.render(g);
        }
@@ -317,18 +320,16 @@ public class WorldManager {
             if(player.getX() == 0){
 				randomArea = new EmptyArea(handler, yPosition);
 			} else {
-
-            	randomArea = new WaterArea(handler, yPosition);
-
-            	//Used to not spawn two lily pad in consecutive Y positions
+				randomArea = new WaterArea(handler, yPosition);
+				//Used to not spawn two lily pad in consecutive Y positions
 				//i used to check if a lilly pad spawned before
-            	if(i == 1){
-            		TurtleLogHazard(yPosition);
-				}else {
+				if (i == 1) {
+					TurtleLogHazard(yPosition);
+				} else {
 					SpawnHazard(yPosition);
 				}
-			}
 
+			}
         } else if (randomArea instanceof RoadArea) {
 			randomArea = new RoadArea(handler, yPosition);
             spawnCar(yPosition);
@@ -364,7 +365,7 @@ public class WorldManager {
 			SpawnedHazards.add(new Log(handler, 0, yPosition));
 			int extraBlock = 0;
 			for (int X = 0; X < 3; X++) {
-				extraBlock -= 192;
+				extraBlock -=224;
 				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
 			}
 		}
@@ -420,10 +421,27 @@ public class WorldManager {
 	public void powerUpSpawn(int yPosition) {
 	    Random rand = new Random();
 	    int randInt;
-        randInt = 64 * rand.nextInt(8);
+        randInt = 64 * rand.nextInt(9);
         for (int X = 0; X <= 1; X++) {
             SpawnedHazards.add(new PowerUp(handler, randInt, yPosition));
-            randInt = 64 * rand.nextInt(8);
+            randInt = 64 * rand.nextInt(5);
         }
 	}
+
+	public void waterDeath() {
+		for(int i = 0 ; i < SpawnedAreas.size(); i++) {
+			if(SpawnedAreas.get(i) instanceof WaterArea && player.getY() == SpawnedAreas.get(i).getYPosition()) {
+				for(int  j = 0 ; i < SpawnedHazards.size();i++) {
+					if(SpawnedHazards.get(j).getX() - 5 <= player.getX() &&
+							(SpawnedHazards.get(j).getX() + 5) >= (player.getX() + handler.getWidth())
+							&& SpawnedHazards.get(j).getY() + 5 <= player.getY()
+							&& SpawnedHazards.get(j).getY() -5 >= (player.getY() + handler.getHeight())){
+						return;
+					}
+					State.setState(handler.getGame().deathState);
+				}
+			}
+		}
+	}
+
 }
