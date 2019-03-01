@@ -178,8 +178,8 @@ public class WorldManager {
 
 			if (SpawnedHazards.get(i) instanceof Log) {
 				SpawnedHazards.get(i).setX(SpawnedHazards.get(i).getX() + 2);
-				if (SpawnedHazards.get(i).getX() > 704) {
-					SpawnedHazards.get(i).setX(-128);
+				if (SpawnedHazards.get(i).getX() > 832) {
+					SpawnedHazards.get(i).setX(-192);
 				}
 
 				// Verifies the hazards Rectangles aren't null and
@@ -389,8 +389,8 @@ public class WorldManager {
 		} else {
 			SpawnedHazards.add(new Log(handler, 0, yPosition));
 			int extraBlock = 0;
-			for (int X = 0; X < 3; X++) {
-				extraBlock -= 224;
+			for (int X = 0; X < 4; X++) {
+				extraBlock -= 192;
 				SpawnedHazards.add(new Log(handler, extraBlock, yPosition));
 			}
 		}
