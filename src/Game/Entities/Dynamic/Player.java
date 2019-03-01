@@ -1,10 +1,6 @@
 package Game.Entities.Dynamic;
 
 import Game.Entities.EntityBase;
-import Game.Entities.Static.StaticBase;
-import Game.Entities.Static.Tree;
-import Game.GameStates.State;
-import Game.World.WorldManager;
 import Main.Handler;
 import Resources.Images;
 
@@ -20,14 +16,11 @@ public class Player extends EntityBase {
 
 
     private Rectangle player;
-    //private Rectangle nextBlockCHeck;
     public String facing = "UP";
     public Boolean moving = false;
     private int moveCoolDown=0;
     public int scoreTracker = 0;
     public static int score = 0;
-//    public boolean notColliding = true;
-
     private int index =0;
 
     public Player(Handler handler) {
@@ -36,17 +29,9 @@ public class Player extends EntityBase {
         this.handler.getEntityManager().getEntityList().add(this);
 
         player = new Rectangle(); 	// see UpdatePlayerRectangle(Graphics g) for its usage.
-        //nextBlockCHeck = new Rectangle();
     }
 
     public void tick(){
-
-//        if(scoreTracker > score){
-//            this.score +=1;
-////            score +=1;
-//            System.out.println(score);
-//        }
-//
 
         if(moving) {
             animateMovement();
@@ -87,9 +72,7 @@ public class Player extends EntityBase {
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && facing.equals("UP")&& this.getY()-128>0) {
 
             moving = true;
-//            if (notColliding){
             scoreTracker += 1;
-       // }
         }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_W) && !moving && !facing.equals("UP")){
             if(facing.equals("DOWN")) {
                 if(this.getX() % 64 >= 64 / 2 ) {
@@ -125,9 +108,7 @@ public class Player extends EntityBase {
         /////////////////MOVE DOWN///////////////
         else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S) && !moving && facing.equals("DOWN")){
             moving=true;
-//            if (notColliding) {
                 scoreTracker -= 1;
-//            }
         }else if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_S) && !moving && !facing.equals("DOWN")){
             reGrid();
             if(facing.equals("RIGHT")){
@@ -160,7 +141,6 @@ public class Player extends EntityBase {
         }
         if(scoreTracker > score){
             score ++;
-//
 
         }
     }
@@ -174,9 +154,6 @@ public class Player extends EntityBase {
         index++;
         switch (facing) {
             case "UP":
-//                if(this.getY() < 70) {
-//                    break;
-//                }
                 if (this.getX() % 64 >= 64 / 2) {
                     this.setX(this.getX() + (64 - this.getX() % 64));
                 } else {
@@ -186,9 +163,6 @@ public class Player extends EntityBase {
                 break;
 
             case "LEFT":
-//                if(this.getX() < -5) {
-//                    break;
-//                }
                 setX(getX() - (8));
                 break;
 
@@ -202,9 +176,6 @@ public class Player extends EntityBase {
                 break;
 
             case "RIGHT":
-//                if(this.getX() > 576) {
-//                    break;
-//                }
                 setX(getX() + (8));
                 break;
 

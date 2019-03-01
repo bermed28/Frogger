@@ -3,7 +3,7 @@ package Game.Entities.Static;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-import Game.World.WaterArea;
+
 import Main.Handler;
 import Resources.Images;
 

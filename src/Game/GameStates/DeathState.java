@@ -42,11 +42,6 @@ public class DeathState extends State {
             handler.getMouseManager().setUimanager(null);
             State.setState(handler.getGame().menuState);
         }));
-//        musicHandler.pause();
-//        musicHandler.set_changeMusic("res/music/UTheme.mp3");
-//        musicHandler.play();
-//        musicHandler.setLoop(true);
-//        musicHandler.setVolume(0.25);
 
     }
 

@@ -51,6 +51,8 @@ public class Images {
     public static BufferedImage Tree;
     public static BufferedImage Rock;
     public static BufferedImage Car;
+    public static BufferedImage BlueCar;
+
     public static BufferedImage[] Restart;
 
     public static BufferedImage[] object;
@@ -136,6 +138,8 @@ public class Images {
             Tree =  ImageIO.read(getClass().getResourceAsStream("/Sheets/Tree.png"));
             Rock =  ImageIO.read(getClass().getResourceAsStream("/Sheets/Stone.png"));
             Car = playerSheet.crop(304,485,136,68);
+            BlueCar = playerSheet.crop(12,481,128,71);
+
             PowerUp =  ImageIO.read(getClass().getResourceAsStream("/Sheets/BitCoin.png"));
             
             object[0] = ImageIO.read(getClass().getResourceAsStream("/Sheets/Objects/object1.png"));

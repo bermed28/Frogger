@@ -2,7 +2,6 @@ package Game.World;
 
 import java.awt.*;
 import java.util.Random;
-import java.awt.Rectangle;
 import Main.Handler;
 import Resources.Animation;
 import Resources.Images;
